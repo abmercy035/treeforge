@@ -1,0 +1,488 @@
+/* ==========================================
+   TreeForge - Modern File Tree UI Library
+   ========================================== */
+
+/* Container Styles */
+.container {
+	display: flex;
+	gap: 20px;
+	height: 90vh;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+	align-items: stretch;
+}
+
+#tree {
+	max-width: 400px;
+	min-width: 250px;
+	background: #1e1e1e;
+	border-radius: 8px;
+	padding: 0;
+	overflow-y: auto;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+	display: flex;
+	flex-direction: column;
+}
+
+/* Scrollbar Styling */
+.tf-tree-content::-webkit-scrollbar {
+	width: 8px;
+}
+
+.tf-tree-content::-webkit-scrollbar-track {
+	background: #2d2d2d;
+	border-radius: 8px;
+}
+
+.tf-tree-content::-webkit-scrollbar-thumb {
+	background: #555;
+	border-radius: 8px;
+}
+
+.tf-tree-content::-webkit-scrollbar-thumb:hover {
+	background: #666;
+}
+
+/* ==========================================
+   TOOLBAR STYLES
+   ========================================== */
+.tf-toolbar {
+	display: flex;
+	gap: 8px;
+	padding: 12px;
+	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	border-radius: 8px 8px 0 0;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+	flex-shrink: 0;
+}
+
+/* Tree Content Wrapper */
+.tf-tree-content {
+	flex: 1;
+	overflow-y: auto;
+	padding: 8px 0;
+}
+
+.tf-btn {
+	padding: 8px 16px;
+	background: rgba(255, 255, 255, 0.2);
+	color: white;
+	border: 1px solid rgba(255, 255, 255, 0.3);
+	border-radius: 6px;
+	font-size: 13px;
+	font-weight: 500;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	backdrop-filter: blur(10px);
+}
+
+.tf-btn:hover {
+	background: rgba(255, 255, 255, 0.3);
+	border-color: rgba(255, 255, 255, 0.5);
+	transform: translateY(-1px);
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.tf-btn:active {
+	transform: translateY(0);
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* ==========================================
+   TREE NODE STYLES
+   ========================================== */
+.tf-node {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 6px 12px;
+	margin: 2px 8px;
+	border-radius: 6px;
+	font-size: 14px;
+	color: #e0e0e0;
+	cursor: pointer;
+	transition: all 0.15s ease;
+	position: relative;
+}
+
+.tf-node:hover {
+	background: rgba(255, 255, 255, 0.08);
+}
+
+.tf-node:active {
+	background: rgba(255, 255, 255, 0.12);
+}
+
+.tf-node-name {
+	white-space: pre;
+	flex: 1;
+	min-width: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	user-select: none;
+}
+
+.tf-name-text {
+	display: inline-block;
+	padding: 2px 4px;
+	border-radius: 3px;
+	transition: all 0.2s ease;
+}
+
+.tf-name-text[contenteditable="true"] {
+	background: #2d2d2d;
+	outline: 2px solid #667eea;
+	color: #fff;
+	user-select: text;
+	cursor: text;
+	padding: 2px 6px;
+}
+
+/* ==========================================
+   ACTION BUTTON (⋮)
+   ========================================== */
+.tf-action {
+	opacity: 0;
+	padding: 4px 8px;
+	font-size: 18px;
+	font-weight: 600;
+	color: #aaa;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	border-radius: 4px;
+	user-select: none;
+}
+
+.tf-node:hover .tf-action {
+	opacity: 1;
+}
+
+.tf-action:hover {
+	background: rgba(255, 255, 255, 0.15);
+	color: #fff;
+}
+
+/* ==========================================
+   CONTEXT MENU STYLES
+   ========================================== */
+.tf-context-menu {
+	position: absolute;
+	background: #2d2d2d;
+	color: #e0e0e0;
+	border: 1px solid #444;
+	border-radius: 8px;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+	font-size: 14px;
+	z-index: 10000;
+	min-width: 160px;
+	padding: 6px;
+	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+	backdrop-filter: blur(10px);
+	animation: contextMenuFadeIn 0.15s ease;
+}
+
+@keyframes contextMenuFadeIn {
+	from {
+		opacity: 0;
+		transform: scale(0.95) translateY(-4px);
+	}
+
+	to {
+		opacity: 1;
+		transform: scale(1) translateY(0);
+	}
+}
+
+.tf-context-item {
+	padding: 8px 12px;
+	cursor: pointer;
+	border-radius: 6px;
+	transition: all 0.15s ease;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	font-size: 13px;
+}
+
+.tf-context-item:hover:not(.disabled) {
+	background: rgba(102, 126, 234, 0.2);
+	color: #fff;
+}
+
+.tf-context-item.disabled {
+	opacity: 0.4;
+	cursor: not-allowed;
+	color: #888;
+}
+
+/* ==========================================
+   MODAL STYLES
+   ========================================== */
+.tf-modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 99999;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	animation: modalFadeIn 0.2s ease;
+}
+
+@keyframes modalFadeIn {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+.tf-modal-backdrop {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.6);
+	backdrop-filter: blur(4px);
+}
+
+.tf-modal-body {
+	position: relative;
+	background: #2d2d2d;
+	border-radius: 12px;
+	padding: 24px;
+	min-width: 320px;
+	max-width: 480px;
+	box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+	animation: modalSlideIn 0.3s ease;
+	border: 1px solid #444;
+}
+
+@keyframes modalSlideIn {
+	from {
+		transform: scale(0.9) translateY(-20px);
+		opacity: 0;
+	}
+
+	to {
+		transform: scale(1) translateY(0);
+		opacity: 1;
+	}
+}
+
+.tf-modal-header {
+	color: #e0e0e0;
+	font-size: 18px;
+	font-weight: 600;
+	margin-bottom: 16px;
+	text-align: center;
+}
+
+.tf-modal-message {
+	color: #e0e0e0;
+	font-size: 16px;
+	margin-bottom: 24px;
+	line-height: 1.5;
+	text-align: center;
+}
+
+.tf-modal-input-wrapper {
+	margin-bottom: 20px;
+}
+
+.tf-modal-input {
+	width: 100%;
+	padding: 12px 16px;
+	background: #1e1e1e;
+	border: 2px solid #444;
+	border-radius: 8px;
+	color: #e0e0e0;
+	font-size: 14px;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+	outline: none;
+	transition: all 0.2s ease;
+	box-sizing: border-box;
+}
+
+.tf-modal-input:focus {
+	border-color: #667eea;
+	background: #252525;
+	box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.tf-modal-input::placeholder {
+	color: #888;
+}
+
+.tf-modal-actions {
+	display: flex;
+	gap: 12px;
+	justify-content: flex-end;
+}
+
+.tf-modal-actions button {
+	padding: 10px 20px;
+	border: none;
+	border-radius: 6px;
+	font-size: 14px;
+	font-weight: 500;
+	cursor: pointer;
+	transition: all 0.2s ease;
+}
+
+.tf-modal-actions button[data-cancel] {
+	background: #444;
+	color: #e0e0e0;
+}
+
+.tf-modal-actions button[data-cancel]:hover {
+	background: #555;
+}
+
+.tf-modal-actions button[data-ok] {
+	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	color: white;
+}
+
+.tf-modal-actions button[data-ok]:hover {
+	transform: translateY(-1px);
+	box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.tf-modal-actions button:active {
+	transform: translateY(0);
+}
+
+/* ==========================================
+   CONTENT EDITOR PANEL
+   ========================================== */
+.tf-content-editor {
+	display: flex;
+	flex-direction: column;
+	background: #1e1e1e;
+	border-radius: 8px;
+	overflow: hidden;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+	flex: 1;
+	min-width: 400px;
+}
+
+.tf-editor-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 12px 16px;
+	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	border-bottom: 1px solid #444;
+}
+
+.tf-editor-title {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.tf-editor-filename {
+	color: white;
+	font-weight: 600;
+	font-size: 14px;
+}
+
+.tf-editor-unsaved {
+	color: #ffd700;
+	font-size: 18px;
+	line-height: 1;
+	animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+
+	0%,
+	100% {
+		opacity: 1;
+	}
+
+	50% {
+		opacity: 0.5;
+	}
+}
+
+.tf-editor-actions {
+	display: flex;
+	gap: 8px;
+}
+
+.tf-editor-body {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+}
+
+.tf-editor-textarea {
+	flex: 1;
+	width: 100%;
+	background: #1e1e1e;
+	color: #e0e0e0;
+	border: none;
+	padding: 16px;
+	font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+	font-size: 14px;
+	line-height: 1.6;
+	resize: none;
+	outline: none;
+}
+
+.tf-editor-textarea::placeholder {
+	color: #666;
+	font-style: italic;
+}
+
+.tf-editor-textarea::-webkit-scrollbar {
+	width: 8px;
+}
+
+.tf-editor-textarea::-webkit-scrollbar-track {
+	background: #2d2d2d;
+}
+
+.tf-editor-textarea::-webkit-scrollbar-thumb {
+	background: #555;
+	border-radius: 8px;
+}
+
+.tf-editor-textarea::-webkit-scrollbar-thumb:hover {
+	background: #666;
+}
+
+/* ==========================================
+   EDITOR STYLES (Demo - Legacy)
+   ========================================== */
+#editor {
+	border: 1px solid #444;
+	background: #1e1e1e;
+	color: #e0e0e0;
+	border-radius: 8px;
+	width: 100%;
+	padding: 16px;
+	min-height: 200px;
+	font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+	font-size: 14px;
+	line-height: 1.6;
+}
+
+/* ==========================================
+   UTILITY CLASSES
+   ========================================== */
+.tree-line {
+	font-family: monospace;
+	cursor: pointer;
+	padding-left: 4px;
+}
