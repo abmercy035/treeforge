@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>TreeForge Demo - Live Server Backend</title>
+	<link rel="stylesheet" href="/styles/ui.css" />
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		body {
+			font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+			background: linear-gradient(135deg, #1e1e1e 0%, #2d2d30 100%);
+			color: #e0e0e0;
+			padding: 20px;
+			min-height: 100vh;
+		}
+
+		h1 {
+			margin-bottom: 10px;
+			font-size: 32px;
+			background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+			background-clip: text;
+		}
+
+		.subtitle {
+			color: #999;
+			margin-bottom: 10px;
+			font-size: 14px;
+		}
+
+		.status {
+			display: inline-flex;
+			align-items: center;
+			gap: 8px;
+			padding: 8px 16px;
+			border-radius: 20px;
+			font-size: 14px;
+			margin-bottom: 20px;
+			background: rgba(255, 255, 255, 0.1);
+		}
+
+		.status.connected {
+			background: rgba(52, 211, 153, 0.2);
+			color: #34d399;
+		}
+
+		.status.disconnected {
+			background: rgba(239, 68, 68, 0.2);
+			color: #ef4444;
+		}
+
+		.status-dot {
+			width: 8px;
+			height: 8px;
+			border-radius: 50%;
+			background: currentColor;
+			animation: pulse-dot 2s ease-in-out infinite;
+		}
+
+		@keyframes pulse-dot {
+
+			0%,
+			100% {
+				opacity: 1;
+			}
+
+			50% {
+				opacity: 0.5;
+			}
+		}
+
+		.demo-container {
+			display: flex;
+			gap: 20px;
+			height: 80vh;
+		}
+
+		#tree {
+			max-width: 400px;
+			min-width: 250px;
+		}
+
+		.info-box {
+			background: rgba(102, 126, 234, 0.1);
+			border: 1px solid rgba(102, 126, 234, 0.3);
+			border-radius: 8px;
+			padding: 15px;
+			margin-bottom: 20px;
+		}
+
+		.info-box h3 {
+			color: #667eea;
+			margin-bottom: 10px;
+			font-size: 16px;
+		}
+
+		.info-box ul {
+			list-style: none;
+			padding: 0;
+		}
+
+		.info-box li {
+			padding: 5px 0;
+			color: #999;
+			font-size: 14px;
+		}
+
+		.info-box li::before {
+			content: "✓ ";
+			color: #34d399;
+			margin-right: 8px;
+		}
+	</style>
+</head>
+
+<body>
+	<h1>🌐 TreeForge Demo - Live Server Backend</h1>
+	<p class="subtitle">Connected to a real Express.js server with full CRUD operations</p>
+
+	<div class="status disconnected" id="status">
+		<span class="status-dot"></span>
+		<span id="status-text">Connecting to server...</span>
+	</div>
+
+	<div class="info-box">
+		<h3>📡 Server Features</h3>
+		<ul>
+			<li>Real-time file tree loading from http://localhost:3000</li>
+			<li>Create, read, update, and delete files</li>
+			<li>Folder operations supported</li>
+			<li>File content persistence</li>
+			<li>All changes saved to server</li>
+		</ul>
+	</div>
+
+	<div class="demo-container">
+		<div id="tree"></div>
+		<!-- Built-in editor will be created automatically -->
+	</div>
+
+	<script type="module">
+		import { TreeForge } from "../treeforge.js";
+
+		const SERVER_URL = 'http://localhost:3300';
+		const statusEl = document.getElementById('status');
+		const statusText = document.getElementById('status-text');
+
+		// Check server connection
+		async function checkServer() {
+			try {
+				const response = await fetch(`${SERVER_URL}/api/tree`);
+				if (response.ok) {
+					statusEl.className = 'status connected';
+					statusText.textContent = 'Connected to server';
+					return true;
+				}
+			} catch (error) {
+				statusEl.className = 'status disconnected';
+				statusText.textContent = 'Server offline - Start with: cd server && npm start';
+				return false;
+			}
+		}
+
+		// Initialize TreeForge with server backend
+		async function init() {
+			const isConnected = await checkServer();
+
+			if (!isConnected) {
+				console.error('❌ Server is not running!');
+				console.log('📝 To start the server:');
+				console.log('   1. cd server');
+				console.log('   2. npm install');
+				console.log('   3. npm start');
+				return;
+			}
+
+			const tree = new TreeForge({
+				containerId: "tree",
+
+				// Load tree from server
+				onLoad: async () => {
+					console.log('📂 Loading file tree from server...');
+					const response = await fetch(`${SERVER_URL}/api/tree`);
+					const data = await response.json();
+					console.log('✅ File tree loaded:', data);
+					return data;
+				},
+
+				hooks: {
+					// Read file content from server
+					onReadFile: async (path, node) => {
+						console.log('📖 Reading file from server:', path);
+						try {
+							const response = await fetch(`${SERVER_URL}/api/files/${path}`);
+							if (!response.ok) throw new Error('Failed to read file');
+							const content = await response.text();
+							console.log('✅ File content loaded:', content.length, 'bytes');
+							return content;
+						} catch (error) {
+							console.error('❌ Read error:', error);
+							return '';
+						}
+					},
+
+					// Write file content to server
+					onWriteFile: async (path, content) => {
+						console.log('💾 Saving file to server:', path, `(${content.length} bytes)`);
+						try {
+							const response = await fetch(`${SERVER_URL}/api/files/${path}`, {
+								method: 'POST',
+								headers: { 'Content-Type': 'text/plain' },
+								body: content
+							});
+
+							if (!response.ok) throw new Error('Failed to save file');
+
+							const result = await response.json();
+							console.log('✅ File saved:', result.message);
+							return true;
+						} catch (error) {
+							console.error('❌ Save error:', error);
+							return false;
+						}
+					},
+
+					// Create file on server
+					onCreateFile: async (parent, name) => {
+						console.log('📄 Creating file on server:', { parent, name });
+						try {
+							const response = await fetch(`${SERVER_URL}/api/create-file`, {
+								method: 'POST',
+								headers: { 'Content-Type': 'application/json' },
+								body: JSON.stringify({ parent, name })
+							});
+
+							if (!response.ok) {
+								const error = await response.json();
+								console.error('❌ Create file error:', error.error);
+								return false;
+							}
+
+							console.log('✅ File created successfully');
+							return true;
+						} catch (error) {
+							console.error('❌ Create file error:', error);
+							return false;
+						}
+					},
+
+					// Create folder on server
+					onCreateFolder: async (parent, name) => {
+						console.log('📁 Creating folder on server:', { parent, name });
+						try {
+							const response = await fetch(`${SERVER_URL}/api/create-folder`, {
+								method: 'POST',
+								headers: { 'Content-Type': 'application/json' },
+								body: JSON.stringify({ parent, name })
+							});
+
+							if (!response.ok) {
+								const error = await response.json();
+								console.error('❌ Create folder error:', error.error);
+								return false;
+							}
+
+							console.log('✅ Folder created successfully');
+							return true;
+						} catch (error) {
+							console.error('❌ Create folder error:', error);
+							return false;
+						}
+					},
+
+					// Delete file on server
+					onDeleteFile: async (path, node) => {
+						console.log('🗑️  Deleting file from server:', path);
+						try {
+							const response = await fetch(`${SERVER_URL}/api/delete/${path}`, {
+								method: 'DELETE'
+							});
+
+							if (!response.ok) {
+								const error = await response.json();
+								console.error('❌ Delete file error:', error.error);
+								return false;
+							}
+
+							console.log('✅ File deleted successfully');
+							return true;
+						} catch (error) {
+							console.error('❌ Delete file error:', error);
+							return false;
+						}
+					},
+
+					// Delete folder on server
+					onDeleteFolder: async (path, node) => {
+						console.log('🗑️  Deleting folder from server:', path);
+						try {
+							const response = await fetch(`${SERVER_URL}/api/delete/${path}`, {
+								method: 'DELETE'
+							});
+
+							if (!response.ok) {
+								const error = await response.json();
+								console.error('❌ Delete folder error:', error.error);
+								return false;
+							}
+
+							console.log('✅ Folder deleted successfully');
+							return true;
+						} catch (error) {
+							console.error('❌ Delete folder error:', error);
+							return false;
+						}
+					},
+
+					// Rename file on server
+					onRenameFile: async (path, newName, node) => {
+						console.log('✏️  Renaming file on server:', path, '->', newName);
+						try {
+							const response = await fetch(`${SERVER_URL}/api/rename/${path}`, {
+								method: 'PATCH',
+								headers: { 'Content-Type': 'application/json' },
+								body: JSON.stringify({ newName })
+							});
+
+							if (!response.ok) {
+								const error = await response.json();
+								console.error('❌ Rename file error:', error.error);
+								return false;
+							}
+
+							console.log('✅ File renamed successfully');
+							return true;
+						} catch (error) {
+							console.error('❌ Rename file error:', error);
+							return false;
+						}
+					},
+
+					// Rename folder on server
+					onRenameFolder: async (path, newName, node) => {
+						console.log('✏️  Renaming folder on server:', path, '->', newName);
+						try {
+							const response = await fetch(`${SERVER_URL}/api/rename/${path}`, {
+								method: 'PATCH',
+								headers: { 'Content-Type': 'application/json' },
+								body: JSON.stringify({ newName })
+							});
+
+							if (!response.ok) {
+								const error = await response.json();
+								console.error('❌ Rename folder error:', error.error);
+								return false;
+							}
+
+							console.log('✅ Folder renamed successfully');
+							return true;
+						} catch (error) {
+							console.error('❌ Rename folder error:', error);
+							return false;
+						}
+					}
+				},
+
+				onFileOpen: (node) => {
+					console.log('📄 File opened:', node.name);
+				}
+			});
+
+			console.log('\n✨ TreeForge initialized with live server backend!');
+			console.log('🎯 Try these actions:');
+			console.log('   - Click files to edit them');
+			console.log('   - Edit and save (Ctrl+S) - changes persist on server');
+			console.log('   - Create new files/folders - saved to server');
+			console.log('   - Delete items - removed from server');
+			console.log('   - Rename items - updated on server');
+			console.log('\n🔄 Refresh the page to see persisted changes!\n');
+		}
+
+		// Start the app
+		init();
+	</script>
+
+</body>
+
+</html>

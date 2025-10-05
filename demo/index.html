@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>TreeForge Demo</title>
+	<link rel="stylesheet" href="/styles/ui.css" />
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		body {
+			font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+			background: linear-gradient(135deg, #1e1e1e 0%, #2d2d30 100%);
+			color: #e0e0e0;
+			padding: 20px;
+			min-height: 100vh;
+		}
+
+		h1 {
+			margin-bottom: 20px;
+			font-size: 32px;
+	color:#be0e0e;
+		}
+	</style>
+</head>
+
+<body>
+	<h1>🌲 TreeForge Demo - Built-in Editor</h1>
+	<p style="color: #eee; margin-bottom: 20px; font-size: 14px;">
+		This demo uses TreeForge's built-in editor (zero configuration needed!)
+		<br>
+		<a href="custom-editor.html" style="color: #161616;">View Custom Editor Demo →</a> |
+		<a href="minimal.html" style="color: #a3c6dd;">View Minimal Demo →</a>
+	</p>
+	<div class="container">
+		<div id="tree"></div>
+		<!-- Editor will be auto-created by TreeForge -->
+	</div>
+
+	<script type="module">
+		import { TreeForge } from "../src/treeforge.js";
+
+		// Sample data with file contents
+		const data = [
+			{
+				name: "README.md",
+				type: "file",
+				content: "# TreeForge Demo\n\nWelcome to TreeForge! Click any file to edit its contents.\n\nFeatures:\n- File tree navigation\n- Inline file editing\n- Unsaved changes indicator\n- Save with Ctrl+S (or Cmd+S)\n- Context menu for file operations"
+			},
+			{
+				name: "src", type: "folder", children: [
+					{
+						name: "utils.js",
+						type: "file",
+						content: "// Utility functions\n\nexport function greet(name) {\n  return `Hello, ${name}!`;\n}\n\nexport function calculateSum(arr) {\n  return arr.reduce((sum, num) => sum + num, 0);\n}"
+					},
+					{
+						name: "main.js",
+						type: "file",
+						content: "import { greet, calculateSum } from './utils.js';\n\nconsole.log(greet('World'));\nconsole.log(calculateSum([1, 2, 3, 4, 5]));"
+					}
+				]
+			},
+			{
+				name: "docs", type: "folder", children: [
+					{
+						name: "api.md",
+						type: "file",
+						content: "# API Documentation\n\n## TreeForge API\n\n### Constructor\n```js\nnew TreeForge(config)\n```\n\n### Methods\n- `createFile(path, name)` - Create a new file\n- `createFolder(path, name)` - Create a new folder\n- `deleteNode(path)` - Delete a file or folder\n- `renameNode(path, newName)` - Rename a file or folder"
+					}
+				]
+			}
+		];
+
+		// BUILT-IN EDITOR MODE - No editor config needed!
+		const tree = new TreeForge({
+			containerId: "tree",
+			localData: data,
+			// No editorInputId = Built-in editor is created automatically!
+
+			hooks: {
+				// Optional: Hook for reading file content
+				onReadFile: async (path, node) => {
+					console.log('📖 Reading file:', path);
+					return node.content || '';
+				},
+
+				// Optional: Hook for saving file content
+				onWriteFile: async (path, content) => {
+					console.log('💾 Saving file:', path, `(${content.length} bytes)`);
+
+					// Update node content
+					const parts = path.split('/');
+					let current = { children: data };
+
+					for (let i = 0; i < parts.length; i++) {
+						if (i === parts.length - 1) {
+							const node = current.children.find(n => n.name === parts[i]);
+							if (node) node.content = content;
+						} else {
+							current = current.children.find(n => n.name === parts[i]);
+						}
+					}
+
+					return true;
+				}
+			},
+			onFileOpen: (node) => {
+				console.log('📄 File opened:', node.name);
+			}
+		});
+
+		console.log('✨ TreeForge initialized with BUILT-IN editor!');
+		console.log('📝 The editor panel was created automatically');
+		console.log('🎨 Try the custom editor demo to use your own elements!');
+	</script>
+
+</body>
+
+</html>

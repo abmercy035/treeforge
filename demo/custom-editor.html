@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>TreeForge Demo - Custom Editor</title>
+	<link rel="stylesheet" href="/styles/ui.css" />
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		body {
+			font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+			background: linear-gradient(135deg, #1e1e1e 0%, #2d2d30 100%);
+			color: #e0e0e0;
+			padding: 20px;
+			min-height: 100vh;
+		}
+
+		h1 {
+			margin-bottom: 10px;
+			font-size: 32px;
+			background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+			background-clip: text;
+		}
+
+		.subtitle {
+			color: #999;
+			margin-bottom: 20px;
+			font-size: 14px;
+		}
+
+		.demo-container {
+			display: flex;
+			gap: 20px;
+			height: 85vh;
+		}
+
+		#tree {
+			max-width: 400px;
+			min-width: 250px;
+		}
+
+		/* Custom Editor Styling */
+		.custom-editor {
+			flex: 1;
+			background: #2d2d2d;
+			border-radius: 8px;
+			overflow: hidden;
+			display: none;
+			/* Hidden until file is opened */
+			flex-direction: column;
+		}
+
+		.custom-editor-header {
+			background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+			padding: 15px 20px;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+
+		.custom-editor-title {
+			display: flex;
+			align-items: center;
+			gap: 10px;
+		}
+
+		.custom-filename {
+			color: white;
+			font-weight: 600;
+			font-size: 16px;
+		}
+
+		.custom-unsaved {
+			color: #ffd700;
+			font-size: 20px;
+			animation: blink 1.5s ease-in-out infinite;
+		}
+
+		@keyframes blink {
+
+			0%,
+			100% {
+				opacity: 1;
+			}
+
+			50% {
+				opacity: 0.3;
+			}
+		}
+
+		.custom-editor-actions {
+			display: flex;
+			gap: 10px;
+		}
+
+		.custom-btn {
+			background: rgba(255, 255, 255, 0.2);
+			border: 1px solid rgba(255, 255, 255, 0.3);
+			color: white;
+			padding: 8px 16px;
+			border-radius: 6px;
+			cursor: pointer;
+			font-size: 14px;
+			transition: all 0.2s;
+		}
+
+		.custom-btn:hover {
+			background: rgba(255, 255, 255, 0.3);
+			transform: translateY(-2px);
+		}
+
+		.custom-btn:active {
+			transform: translateY(0);
+		}
+
+		.custom-editor-body {
+			flex: 1;
+			height: 100vh;
+			display: flex;
+			flex-direction: column;
+			padding: 0;
+		}
+
+		#custom-textarea {
+			flex: 1;
+			background: #1e1e1e;
+			color: #e0e0e0;
+			border: none;
+			padding: 20px;
+			font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+			font-size: 14px;
+			line-height: 1.8;
+			resize: none;
+			outline: none;
+		}
+
+		#custom-textarea::-webkit-scrollbar {
+			width: 10px;
+		}
+
+		#custom-textarea::-webkit-scrollbar-track {
+			background: #2d2d2d;
+		}
+
+		#custom-textarea::-webkit-scrollbar-thumb {
+			background: #555;
+			border-radius: 5px;
+		}
+
+		#custom-textarea::-webkit-scrollbar-thumb:hover {
+			background: #666;
+		}
+	</style>
+</head>
+
+<body>
+	<h1>🎨 TreeForge Demo - Custom Editor</h1>
+	<p class="subtitle">This demo uses a custom editor instead of TreeForge's built-in editor</p>
+
+	<div class="demo-container">
+		<!-- TreeForge Tree -->
+		<div id="tree"></div>
+
+		<!-- Your Custom Editor -->
+		<div class="custom-editor" id="my-editor">
+			<div class="custom-editor-header">
+				<div class="custom-editor-title">
+					<span class="custom-filename" id="my-filename">No file selected</span>
+					<span class="custom-unsaved" id="my-unsaved" style="display: none;">●</span>
+				</div>
+				<div class="custom-editor-actions">
+					<button class="custom-btn" id="my-save-btn">💾 Save</button>
+					<button class="custom-btn" id="my-close-btn">✕ Close</button>
+				</div>
+			</div>
+			<div class="custom-editor-body">
+				<textarea id="custom-textarea" placeholder="Select a file to edit..."></textarea>
+			</div>
+		</div>
+	</div>
+
+	<script type="module">
+		import { TreeForge } from "../src/treeforge.js";
+
+		// Sample data with file contents
+		const data = [
+			{
+				name: "README.md",
+				type: "file",
+				content: "# TreeForge Demo - Custom Editor\n\nThis demo shows how to use your OWN editor elements with TreeForge!\n\n## Features:\n- Custom styled editor\n- Your own buttons and layout\n- Different color scheme (red gradient)\n- Blinking unsaved indicator\n\nTreeForge just manages the file tree and connects to your editor elements."
+			},
+			{
+				name: "src", type: "folder", children: [
+					{
+						name: "utils.js",
+						type: "file",
+						content: "// Custom Editor Demo - Utility Functions\n\nexport function greet(name) {\n  return `Hello, ${name}!`;\n}\n\nexport function multiply(a, b) {\n  return a * b;\n}\n\n// This file is being edited in YOUR custom editor!\n// Not TreeForge's built-in one."
+					},
+					{
+						name: "main.js",
+						type: "file",
+						content: "import { greet, multiply } from './utils.js';\n\nconsole.log(greet('Custom Editor'));\nconsole.log(multiply(7, 6));\n\n// Notice the red gradient header?\n// That's your custom styling!"
+					}
+				]
+			},
+			{
+				name: "config.json",
+				type: "file",
+				content: "{\n  \"editorMode\": \"custom\",\n  \"theme\": \"red-gradient\",\n  \"features\": [\n    \"custom-styling\",\n    \"your-own-buttons\",\n    \"flexible-layout\"\n  ]\n}"
+			}
+		];
+
+		// Initialize TreeForge with YOUR custom editor
+		const tree = new TreeForge({
+			containerId: "tree",
+			localData: data,
+
+			// Tell TreeForge to use YOUR editor elements
+			editorInputId: "custom-textarea",          // Your textarea
+			editorFilenameId: "my-filename",           // Your filename display
+			editorSaveButtonId: "my-save-btn",         // Your save button
+			editorCloseButtonId: "my-close-btn",       // Your close button
+			editorUnsavedIndicatorId: "my-unsaved",    // Your unsaved indicator
+			editorContainerId: "my-editor",            // Your editor container
+
+			hooks: {
+				onReadFile: async (path, node) => {
+					console.log('📖 Reading file:', path);
+					return node.content || '';
+				},
+
+				onWriteFile: async (path, content) => {
+					console.log('💾 Saving file:', path, `(${content.length} bytes)`);
+
+					// Update node content
+					const parts = path.split('/');
+					let current = { children: data };
+
+					for (let i = 0; i < parts.length; i++) {
+						if (i === parts.length - 1) {
+							const node = current.children.find(n => n.name === parts[i]);
+							if (node) node.content = content;
+						} else {
+							current = current.children.find(n => n.name === parts[i]);
+						}
+					}
+
+					return true;
+				}
+			},
+
+			onFileOpen: (node) => {
+				console.log('📄 File opened:', node.name);
+			}
+		});
+
+		console.log('✨ TreeForge initialized with CUSTOM editor!');
+		console.log('📝 Try editing files and notice:');
+		console.log('   - Red gradient header (your styling)');
+		console.log('   - Blinking unsaved indicator (your animation)');
+		console.log('   - Custom button labels (💾 Save, ✕ Close)');
+	</script>
+
+</body>
+
+</html>

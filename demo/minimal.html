@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>TreeForge Demo - Minimal Custom Editor</title>
+	<link rel="stylesheet" href="/styles/ui.css" />
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+
+		body {
+			font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+			background: #f5f5f5;
+			padding: 20px;
+			min-height: 100vh;
+		}
+
+		h1 {
+			margin-bottom: 20px;
+			color: #333;
+		}
+
+		.simple-layout {
+			display: flex;
+			gap: 20px;
+			height: 80vh;
+		}
+
+		#tree {
+			width: 300px;
+		}
+
+		#simple-textarea {
+			flex: 1;
+			padding: 15px;
+			font-family: 'Courier New', monospace;
+			font-size: 14px;
+			border: 2px solid #ddd;
+			border-radius: 4px;
+			resize: none;
+		}
+
+		#simple-textarea:focus {
+			outline: none;
+			border-color: #667eea;
+		}
+	</style>
+</head>
+
+<body>
+	<h1>⚡ TreeForge Demo - Minimal Setup</h1>
+
+	<div class="simple-layout">
+		<!-- TreeForge Tree -->
+		<div id="tree"></div>
+
+		<!-- Just a textarea - nothing else! -->
+		<textarea id="simple-textarea" placeholder="Click a file to edit..."></textarea>
+	</div>
+
+	<script type="module">
+		import { TreeForge } from "../src/treeforge.js";
+
+		const data = [
+			{ name: "todo.txt", type: "file", content: "- Learn TreeForge\n- Build awesome apps\n- Profit!" },
+			{ name: "notes.txt", type: "file", content: "This is a minimal setup demo.\n\nOnly ONE config parameter needed:\neditorInputId: 'simple-textarea'\n\nThat's it!" },
+			{
+				name: "docs", type: "folder", children: [
+					{ name: "readme.md", type: "file", content: "# Minimal Setup\n\nJust provide the textarea ID.\nTreeForge handles the rest!" }
+				]
+			}
+		];
+
+		// MINIMAL CONFIGURATION - Only 3 parameters!
+		const tree = new TreeForge({
+			containerId: "tree",
+			localData: data,
+			editorInputId: "simple-textarea"  // That's all you need!
+		});
+
+		console.log('✨ Minimal TreeForge setup complete!');
+		console.log('📝 Ctrl+S / Cmd+S to save works automatically');
+	</script>
+
+</body>
+
+</html>

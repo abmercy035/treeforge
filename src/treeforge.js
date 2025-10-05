@@ -197,11 +197,23 @@ export class TreeForge {
 		// create a small toolbar at top of container
 		const bar = document.createElement("div");
 		bar.className = "tf-toolbar";
-		bar.innerHTML = `
-			<button class="tf-btn" data-action="new-file">New File</button>
-			<button class="tf-btn" data-action="new-folder">New Folder</button>
-			<button class="tf-btn" data-action="collapse-all">Collapse All</button>
-			<button class="tf-btn" data-action="refresh">Refresh</button>`;
+		bar.innerHTML =
+			`<button class="tf-btn" data-action="new-file">
+		<svg width="64px" height="64px" viewBox="0 0 24 24" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#ffffff" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0">
+		</g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+		<g id="SVGRepo_iconCarrier">
+		<title>file_new_line</title>
+		<g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> 
+		<g id="File" transform="translate(-336.000000, -96.000000)" fill-rule="nonzero"> 
+		<g id="file_new_line" transform="translate(336.000000, 96.000000)">
+		<path d="M24,0 L24,24 L0,24 L0,0 L24,0 Z M12.5934901,23.257841 L12.5819402,23.2595131 L12.5108777,23.2950439 L12.4918791,23.2987469 L12.4918791,23.2987469 L12.4767152,23.2950439 L12.4056548,23.2595131 C12.3958229,23.2563662 12.3870493,23.2590235 12.3821421,23.2649074 L12.3780323,23.275831 L12.360941,23.7031097 L12.3658947,23.7234994 L12.3769048,23.7357139 L12.4804777,23.8096931 L12.4953491,23.8136134 L12.4953491,23.8136134 L12.5071152,23.8096931 L12.6106902,23.7357139 L12.6232938,23.7196733 L12.6232938,23.7196733 L12.6266527,23.7031097 L12.609561,23.275831 C12.6075724,23.2657013 12.6010112,23.2592993 12.5934901,23.257841 L12.5934901,23.257841 Z M12.8583906,23.1452862 L12.8445485,23.1473072 L12.6598443,23.2396597 L12.6498822,23.2499052 L12.6498822,23.2499052 L12.6471943,23.2611114 L12.6650943,23.6906389 L12.6699349,23.7034178 L12.6699349,23.7034178 L12.678386,23.7104931 L12.8793402,23.8032389 C12.8914285,23.8068999 12.9022333,23.8029875 12.9078286,23.7952264 L12.9118235,23.7811639 L12.8776777,23.1665331 C12.8752882,23.1545897 12.8674102,23.1470016 12.8583906,23.1452862 L12.8583906,23.1452862 Z M12.1430473,23.1473072 C12.1332178,23.1423925 12.1221763,23.1452606 12.1156365,23.1525954 L12.1099173,23.1665331 L12.0757714,23.7811639 C12.0751323,23.7926639 12.0828099,23.8018602 12.0926481,23.8045676 L12.108256,23.8032389 L12.3092106,23.7104931 L12.3186497,23.7024347 L12.3186497,23.7024347 L12.3225043,23.6906389 L12.340401,23.2611114 L12.337245,23.2485176 L12.337245,23.2485176 L12.3277531,23.2396597 L12.1430473,23.1473072 Z" id="MingCute" fill-rule="nonzero">
+		</path> <path d="M13.5858,2 C14.0572667,2 14.5115877,2.16648691 14.870172,2.46691468 L15,2.58579 L19.4142,7 C19.7476222,7.33339556 19.9511481,7.77238321 19.9922598,8.23835797 L20,8.41421 L20,20 C20,21.0543909 19.18415,21.9181678 18.1492661,21.9945144 L18,22 L6,22 C4.94563773,22 4.08183483,21.18415 4.00548573,20.1492661 L4,20 L4,4 C4,2.94563773 4.81587733,2.08183483 5.85073759,2.00548573 L6,2 L13.5858,2 Z M12,4 L6,4 L6,20 L18,20 L18,10 L13.5,10 C12.6716,10 12,9.32843 12,8.5 L12,4 Z M12,11.5 C12.5523,11.5 13,11.9477 13,12.5 L13,14 L14.5,14 C15.0523,14 15.5,14.4477 15.5,15 C15.5,15.5523 15.0523,16 14.5,16 L13,16 L13,17.5 C13,18.0523 12.5523,18.5 12,18.5 C11.4477,18.5 11,18.0523 11,17.5 L11,16 L9.5,16 C8.94772,16 8.5,15.5523 8.5,15 C8.5,14.4477 8.94772,14 9.5,14 L11,14 L11,12.5 C11,11.9477 11.4477,11.5 12,11.5 Z M14,4.41421 L14,8 L17.5858,8 L14,4.41421 Z" id="形状" fill="#fff"> </path> </g> </g> </g> </g></svg></button>
+			<button class="tf-btn" data-action="new-folder"><svg width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M12.0601 16.5V11.5" stroke="#fff" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M14.5 14H9.5" stroke="#fff" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M22 11V17C22 21 21 22 17 22H7C3 22 2 21 2 17V7C2 3 3 2 7 2H8.5C10 2 10.33 2.44 10.9 3.2L12.4 5.2C12.78 5.7 13 6 14 6H17C21 6 22 7 22 11Z" stroke="#fff" stroke-width="1.5" stroke-miterlimit="10"></path> </g></svg></button>
+			<button class="tf-btn" data-action="collapse-all"><svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M9 9H4v1h5V9z"></path><path fill-rule="evenodd" clip-rule="evenodd" d="M5 3l1-1h7l1 1v7l-1 1h-2v2l-1 1H3l-1-1V6l1-1h2V3zm1 2h4l1 1v4h2V3H6v2zm4 1H3v7h7V6z"></path></g></svg></button>
+			<button class="tf-btn" data-action="refresh"><svg width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M11 2L13 3.99545L12.9408 4.05474M13 18.0001L11 19.9108L11.0297 19.9417M12.9408 4.05474L11 6M12.9408 4.05474C12.6323 4.01859 12.3183 4 12 4C7.58172 4 4 7.58172 4 12C4 14.5264 5.17107 16.7793 7 18.2454M17 5.75463C18.8289 7.22075 20 9.47362 20 12C20 16.4183 16.4183 20 12 20C11.6716 20 11.3477 19.9802 11.0297 19.9417M13 22.0001L11.0297 19.9417" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+			</g>
+			</svg>
+			</button>`;
 		// Insert toolbar as first child of container
 		this.container.insertBefore(bar, this.container.firstChild);
 
@@ -592,40 +604,6 @@ export class TreeForge {
 
 	// ------------ Internals ------------
 
-	// _attachEvents() {
-	// 	this.container.querySelectorAll(".tf-node").forEach(el => {
-	// 		const path = el.dataset.path;
-	// 		const node = findNode(this.data, path);
-
-	// 		// Left click → toggle folder or open file
-	// 		el.onclick = (e) => {
-	// 			if (e.target.classList.contains("tf-action")) return; // skip if clicking ⋮
-
-	// 			if (node.type === "folder") {
-	// 				node.collapsed = !node.collapsed;
-	// 				this.refresh();
-	// 			} else {
-	// 				this.onFileOpen(node);
-	// 			}
-	// 		};
-
-	// 		// Right-click → context menu
-	// 		el.oncontextmenu = (e) => {
-	// 			e.preventDefault();
-	// 			this._showContextMenu(e, path);
-	// 		};
-
-	// 		// ⋮ button click
-	// 		const actionBtn = el.querySelector(".tf-action");
-	// 		if (actionBtn) {
-	// 			actionBtn.onclick = (e) => {
-	// 				e.stopPropagation();
-	// 				this._showContextMenu(e, path);
-	// 			};
-	// 		}
-	// 	});
-	// }
-
 	_attachEvents() {
 		this.container.querySelectorAll(".tf-node").forEach(el => {
 
@@ -838,63 +816,5 @@ export class TreeForge {
 
 		this.menu.style.display = "none";
 	}
-
-
-
-	// 	_handleContextAction(action) {
-	//   let path = this.selectedPath;
-	//   let node = findNode(this.data, path);
-
-	//   // If it's a file and user clicks "New File/Folder", fallback to parent
-	//   if (node?.type === "file") {
-	//     const parts = path.split("/");
-	//     parts.pop();
-	//     path = parts.join("/");
-	//     node = findNode(this.data, path);
-	//   }
-
-	//   switch (action) {
-	//     case "New File":
-	//       {
-	//         let fname = this.settings.newFilePrompt 
-	//           ? this.settings.newFilePrompt()
-	//           : prompt("Enter file name:", "newFile.js");
-	//         if (fname) this.createFile(path, fname);
-	//       }
-	//       break;
-
-	//     case "New Folder":
-	//       {
-	//         let dname = this.settings.newFolderPrompt 
-	//           ? this.settings.newFolderPrompt()
-	//           : prompt("Enter folder name:", "newFolder");
-	//         if (dname) this.createFolder(path, dname);
-	//       }
-	//       break;
-
-	//     case "Rename":
-	//       {
-	//         const newName = this.settings.renamePrompt 
-	//           ? this.settings.renamePrompt(node.name)
-	//           : prompt("Rename to:", node.name);
-	//         if (newName) this.renameNode(this.selectedPath, newName);
-	//       }
-	//       break;
-
-	//     case "Delete":
-	//       {
-	//         const ok = this.settings.deleteConfirm
-	//           ? this.settings.deleteConfirm(node.name)
-	//           : confirm(`Delete "${node.name}"?`);
-	//         if (ok) this.deleteNode(this.selectedPath);
-	//       }
-	//       break;
-	//   }
-
-	//   this.menu.style.display = "none";
-	// }
-
-
-
 
 }
