@@ -217,6 +217,7 @@ import TreeForge, {
 - **[QUICK_REFERENCE.md](./QUICK_REFERENCE.md)** - Cheat sheet
 - **[CONFIG_README.md](./CONFIG_README.md)** - Configuration guide
 - **[COMPLETE_REFERENCE.md](./COMPLETE_REFERENCE.md)** - API reference
+ - **[mds/README.md](./mds/README.md)** - Documentation index: an organized table-of-contents for the `mds/` docs folder.
 
 ---
 
