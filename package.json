@@ -33,8 +33,8 @@
     "styles/",
     "*.md"
   ],
-  "unpkg": "dist/treeforge.umd.min.js",
-  "browser": "dist/treeforge.umd.min.js",
+  "unpkg": "dist/treeforge.min.js",
+  "browser": "dist/treeforge.min.js",
   "exports": {
     ".": {
       "require": "./index.js",
