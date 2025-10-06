@@ -143,7 +143,7 @@
 
 .tf-name-text[contenteditable="true"] {
 	background: #2d2d2d;
-	outline: 2px solid #667eea;
+	outline: 2px solid #1fb6ff;
 	color: #fff;
 	user-select: text;
 	cursor: text;
@@ -217,7 +217,7 @@
 }
 
 .tf-context-item:hover:not(.disabled) {
-	background: rgba(102, 126, 234, 0.2);
+	background: rgba(31, 182, 255, 0.12);
 	color: #fff;
 }
 
@@ -322,9 +322,9 @@
 }
 
 .tf-modal-input:focus {
-	border-color: #667eea;
+	border-color: #1fb6ff;
 	background: #252525;
-	box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+	box-shadow: 0 0 0 3px rgba(31, 182, 255, 0.08);
 }
 
 .tf-modal-input::placeholder {
@@ -357,13 +357,13 @@
 }
 
 .tf-modal-actions button[data-ok] {
-	background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+	background: linear-gradient(135deg, #1fb6ff 0%, #0ea5a3 100%);
 	color: white;
 }
 
 .tf-modal-actions button[data-ok]:hover {
 	transform: translateY(-1px);
-	box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+	box-shadow: 0 4px 12px rgba(31, 182, 255, 0.22);
 }
 
 .tf-modal-actions button:active {

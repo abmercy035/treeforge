@@ -1,6 +1,6 @@
 {
   "name": "treeforge",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "TreeForge is a lightweight, dependency-free JS package to render and manage ASCII-based file trees inside browser editors, sandboxes, or learning tools. It supports interactivity + CRUD actions, while remaining agnostic of the data source (local JSON or API).",
   "keywords": [
     "file-system",

@@ -58,9 +58,9 @@ Complete documentation for the documentation site itself:
 ### Color Palette
 ```css
 Primary Colors:
-- Purple: #667eea (main brand)
-- Pink-Purple: #764ba2 (secondary)
-- Accent Pink: #f093fb
+-- Teal/Blue: #1fb6ff (main brand)
+-- Teal: #0ea5a3 (secondary)
+-- Mint Accent: #7ee7d9
 
 Backgrounds:
 - Main: #0d1117 (GitHub dark)

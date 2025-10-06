@@ -128,9 +128,9 @@ TreeForge/
 ### **Color Palette**
 ```css
 /* Brand Colors */
---primary: #667eea         /* Purple gradient start */
---secondary: #764ba2       /* Purple gradient end */
---accent: #f093fb          /* Pink accent */
+--primary: #1fb6ff         /* Teal gradient start */
+--secondary: #0ea5a3       /* Teal gradient end */
+--accent: #7ee7d9          /* Mint accent */
 
 /* Dark Theme */
 --bg-primary: #0d1117      /* GitHub dark background */

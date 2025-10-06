@@ -86,11 +86,11 @@ docs/
 ## 🎨 Color Palette
 
 ```css
---primary: #667eea         /* Purple */
---primary-dark: #5568d3    /* Darker purple */
---primary-light: #7c8eec   /* Lighter purple */
---secondary: #764ba2       /* Pink-purple */
---accent: #f093fb          /* Pink */
+--primary: #1fb6ff         /* Teal/Blue */
+--primary-dark: #0aa3e3    /* Darker teal */
+--primary-light: #4fd1ff   /* Lighter teal */
+--secondary: #0ea5a3       /* Teal */
+--accent: #7ee7d9          /* Mint */
 
 --bg-primary: #0d1117      /* Main background */
 --bg-secondary: #161b22    /* Secondary background */
