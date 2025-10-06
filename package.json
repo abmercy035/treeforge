@@ -1,6 +1,6 @@
 {
   "name": "treeforge",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "TreeForge is a lightweight, dependency-free JS package to render and manage ASCII-based file trees inside browser editors, sandboxes, or learning tools. It supports interactivity + CRUD actions, while remaining agnostic of the data source (local JSON or API).",
   "keywords": [
     "file-system",
@@ -24,8 +24,8 @@
   },
   "license": "ISC",
   "author": "https://github.com/abmercy035/",
-  "type": "commonjs",
-  "main": "index.js",
+  "type": "module",
+  "main": "src/index.js",
   "style": "styles/ui.css",
   "files": [
     "index.js",
@@ -33,6 +33,8 @@
     "styles/",
     "*.md"
   ],
+  "unpkg": "dist/treeforge.min.js",
+  "browser": "dist/treeforge.min.js",
   "exports": {
     ".": {
       "require": "./index.js",
@@ -42,6 +44,13 @@
     "./styles/*": "./styles/*"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rollup -c",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^16.0.2",
+    "rollup": "^2.79.2",
+    "rollup-plugin-terser": "^7.0.2"
   }
 }
