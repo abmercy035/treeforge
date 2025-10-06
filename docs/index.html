@@ -8,6 +8,9 @@
 	<meta name="description"
 		  content="A lightweight, dependency-free JavaScript library for rendering interactive file trees with style.">
 	<link rel="stylesheet" href="./styles/docs-style.css">
+	<!-- TreeForge UI styles - using local file -->
+	<!-- <link rel="stylesheet" href="../styles/ui.css"> -->
+		<link rel="stylesheet" href="https://unpkg.com/treeforge@1.0.0/styles/ui.css">
 	<link rel="stylesheet"
 		  href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
 </head>
@@ -2114,6 +2117,20 @@ npm run build</code></pre>
 
 	<!-- Scripts -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+	<!-- Load TreeForge library for live demos -->
+	<script type="module">
+		// Import TreeForge from local source (for development)
+		// For production, you can use: 'https://unpkg.com/treeforge@1.0.0/src/index.js'
+		// import { TreeForge, ConfigPresets, TreeStyles } from '../src/index.js';
+		import { TreeForge, ConfigPresets, TreeStyles } from 'https://unpkg.com/treeforge@1.0.0/src/index.js';
+
+		// Make TreeForge available globally for the docs
+		window.TreeForge = TreeForge;
+		window.ConfigPresets = ConfigPresets;
+		window.TreeStyles = TreeStyles;
+
+		console.log('✅ TreeForge v1.0.0 loaded successfully', { TreeForge, ConfigPresets, TreeStyles });
+	</script>
 	<script src="./scripts/docs-app.js"></script>
 </body>
 

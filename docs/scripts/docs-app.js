@@ -21,7 +21,15 @@ document.addEventListener('DOMContentLoaded', function () {
 // ==========================================
 function initHighlightJS() {
 	if (typeof hljs !== 'undefined') {
-		hljs.highlightAll();
+		// Configure highlight.js to ignore HTML entities warnings
+		hljs.configure({
+			ignoreUnescapedHTML: true
+		});
+
+		// Highlight all code blocks
+		document.querySelectorAll('pre code').forEach((block) => {
+			hljs.highlightElement(block);
+		});
 	}
 }
 
