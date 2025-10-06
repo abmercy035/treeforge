@@ -434,13 +434,13 @@ function createTreeDemo(container, data, style) {
 // ==========================================
 function renderTreeASCII(node, prefix = '', isLast = true) {
 	let result = '';
-	const connector = isLast ? '└── ' : '├── ';
+	const connector = isLast ? ' ' : ' ';
 	const icon = node.type === 'folder' ? '📁 ' : '📄 ';
 
 	result += prefix + connector + icon + node.name + '\n';
 
 	if (node.children && node.children.length > 0) {
-		const newPrefix = prefix + (isLast ? '    ' : '│   ');
+		const newPrefix = prefix + (isLast ? '  ' : '  ');
 		node.children.forEach((child, index) => {
 			const childIsLast = index === node.children.length - 1;
 			result += renderTreeASCII(child, newPrefix, childIsLast);

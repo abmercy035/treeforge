@@ -25,12 +25,12 @@ A modern, dark-themed documentation website for TreeForge - built with pure HTML
 
 ```
 docs/
-├── index.html              # Main documentation page
-├── styles/
-│   └── docs-style.css      # Complete dark theme stylesheet
-├── scripts/
-│   └── docs-app.js         # Interactive features & TreeForge demos
-└── README.md               # This file
+ index.html              # Main documentation page
+ styles/
+   docs-style.css      # Complete dark theme stylesheet
+ scripts/
+   docs-app.js         # Interactive features & TreeForge demos
+ README.md               # This file
 ```
 
 ## 🚀 Features
