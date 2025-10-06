@@ -24,8 +24,8 @@
   },
   "license": "ISC",
   "author": "https://github.com/abmercy035/",
-  "type": "module",
-  "main": "src/index.js",
+  "type": "commonjs",
+  "main": "index.js",
   "style": "styles/ui.css",
   "files": [
     "index.js",
@@ -33,8 +33,6 @@
     "styles/",
     "*.md"
   ],
-  "unpkg": "dist/treeforge.min.js",
-  "browser": "dist/treeforge.min.js",
   "exports": {
     ".": {
       "require": "./index.js",
@@ -44,13 +42,6 @@
     "./styles/*": "./styles/*"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rollup -c",
-    "prepublishOnly": "npm run build"
-  },
-  "devDependencies": {
-    "@rollup/plugin-node-resolve": "^16.0.2",
-    "rollup": "^2.79.2",
-    "rollup-plugin-terser": "^7.0.2"
+    "test": "echo \"Error: no test specified\" && exit 1"
   }
 }

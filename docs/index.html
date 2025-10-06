@@ -1,0 +1,2120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>TreeForge - Modern File Tree Component</title>
+	<meta name="description"
+		  content="A lightweight, dependency-free JavaScript library for rendering interactive file trees with style.">
+	<link rel="stylesheet" href="./styles/docs-style.css">
+	<link rel="stylesheet"
+		  href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+</head>
+
+<body>
+	<!-- Navigation -->
+	<nav class="navbar">
+		<div class="nav-container">
+			<div class="nav-brand">
+				<span class="brand-icon">🌲</span>
+				<span class="brand-name">TreeForge</span>
+				<span class="version-badge">v1.0.0</span>
+			</div>
+			<div class="nav-links">
+				<a href="#home" class="nav-link active">Home</a>
+				<a href="#features" class="nav-link">Features</a>
+				<a href="#getting-started" class="nav-link">Get Started</a>
+				<a href="#examples" class="nav-link">Examples</a>
+				<a href="#api" class="nav-link">API</a>
+				<a href="https://github.com/abmercy035/treeforge" target="_blank" class="nav-link github-link">
+					<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+						<path
+							  d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+					</svg>
+					GitHub
+				</a>
+			</div>
+			<button class="mobile-menu-toggle" aria-label="Toggle menu">
+				<span></span>
+				<span></span>
+				<span></span>
+			</button>
+		</div>
+	</nav>
+
+	<!-- Sidebar Navigation -->
+	<aside class="sidebar" id="sidebar">
+		<div class="sidebar-content">
+			<div class="sidebar-header">
+				<h3>Documentation</h3>
+				<button class="sidebar-close" aria-label="Close sidebar">
+					<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+						<line x1="18" y1="6" x2="6" y2="18"></line>
+						<line x1="6" y1="6" x2="18" y2="18"></line>
+					</svg>
+				</button>
+			</div>
+
+			<nav class="sidebar-nav">
+				<div class="nav-section">
+					<h4 class="nav-section-title">Getting Started</h4>
+					<ul class="nav-list">
+						<li><a href="#home" class="nav-item active">Introduction</a></li>
+						<li><a href="#features" class="nav-item">Features</a></li>
+						<li><a href="#getting-started" class="nav-item">Installation</a></li>
+						<li><a href="#quick-start" class="nav-item">Quick Start</a></li>
+					</ul>
+				</div>
+
+				<div class="nav-section">
+					<h4 class="nav-section-title">Core Concepts</h4>
+					<ul class="nav-list">
+						<li><a href="#configuration" class="nav-item">Configuration</a></li>
+						<li><a href="#data-structure" class="nav-item">Data Structure</a></li>
+						<li><a href="#examples" class="nav-item">Examples</a></li>
+						<li><a href="#themes" class="nav-item">Themes</a></li>
+					</ul>
+				</div>
+
+				<div class="nav-section">
+					<h4 class="nav-section-title">API Reference</h4>
+					<ul class="nav-list">
+						<li><a href="#api-constructor" class="nav-item">Constructor</a></li>
+						<li><a href="#api-methods" class="nav-item">Methods</a></li>
+						<li><a href="#api-properties" class="nav-item">Properties</a></li>
+						<li><a href="#api-events" class="nav-item">Events</a></li>
+					</ul>
+				</div>
+
+				<div class="nav-section">
+					<h4 class="nav-section-title">Hooks</h4>
+					<ul class="nav-list">
+						<li><a href="#hooks-lifecycle" class="nav-item">Lifecycle Hooks</a></li>
+						<li><a href="#hooks-file" class="nav-item">File Operations</a></li>
+						<li><a href="#hooks-folder" class="nav-item">Folder Operations</a></li>
+						<li><a href="#hooks-custom" class="nav-item">Custom Hooks</a></li>
+					</ul>
+				</div>
+
+				<div class="nav-section">
+					<h4 class="nav-section-title">Advanced</h4>
+					<ul class="nav-list">
+						<li><a href="#presets" class="nav-item">Presets</a></li>
+						<li><a href="#styling" class="nav-item">Custom Styling</a></li>
+						<li><a href="#integration" class="nav-item">Framework Integration</a></li>
+						<li><a href="#performance" class="nav-item">Performance</a></li>
+					</ul>
+				</div>
+
+				<div class="nav-section">
+					<h4 class="nav-section-title">Resources</h4>
+					<ul class="nav-list">
+						<li><a href="#changelog" class="nav-item">Changelog</a></li>
+						<li><a href="#migration" class="nav-item">Migration Guide</a></li>
+						<li><a href="#contributing" class="nav-item">Contributing</a></li>
+						<li><a href="#support" class="nav-item">Support</a></li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+
+		<!-- Previous/Next Navigation -->
+		<div class="page-nav">
+			<a href="#" class="page-nav-btn prev-btn" id="prevBtn">
+				<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+					<path d="M19 12H5M12 19l-7-7 7-7" />
+				</svg>
+				<div class="page-nav-text">
+					<span class="page-nav-label">Previous</span>
+					<span class="page-nav-title" id="prevTitle">Introduction</span>
+				</div>
+			</a>
+			<a href="#" class="page-nav-btn next-btn" id="nextBtn">
+				<div class="page-nav-text">
+					<span class="page-nav-label">Next</span>
+					<span class="page-nav-title" id="nextTitle">Features</span>
+				</div>
+				<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+					<path d="M5 12h14M12 5l7 7-7 7" />
+				</svg>
+			</a>
+		</div>
+	</aside>
+
+	<!-- Sidebar Toggle Button (Mobile) -->
+	<button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
+		<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+			<line x1="3" y1="12" x2="21" y2="12"></line>
+			<line x1="3" y1="6" x2="21" y2="6"></line>
+			<line x1="3" y1="18" x2="21" y2="18"></line>
+		</svg>
+	</button>
+
+	<!-- Main Content Wrapper -->
+	<div class="main-content">
+
+		<!-- Hero Section -->
+		<section id="home" class="hero">
+			<div class="hero-container">
+				<div class="hero-content">
+					<h1 class="hero-title">
+						<span class="gradient-text">TreeForge</span>
+					</h1>
+					<p class="hero-subtitle">Modern File Tree Component for the Web</p>
+					<p class="hero-description">
+						A lightweight, dependency-free JavaScript library for rendering beautiful,
+						interactive file trees. Perfect for sandboxes, editors, and learning platforms.
+					</p>
+					<div class="hero-badges">
+						<span class="badge">✨ Zero Dependencies</span>
+						<span class="badge">🎨 15 Themes</span>
+						<span class="badge">⚡ Lightweight (~10KB)</span>
+						<span class="badge">🔧 Highly Configurable</span>
+					</div>
+					<div class="hero-actions">
+						<a href="#getting-started" class="btn btn-primary">
+							Get Started
+							<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+								 stroke-width="2">
+								<path d="M5 12h14M12 5l7 7-7 7" />
+							</svg>
+						</a>
+						<a href="https://github.com/abmercy035/treeforge" target="_blank" class="btn btn-secondary">
+							<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+								<path
+									  d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+							</svg>
+							View on GitHub
+						</a>
+					</div>
+				</div>
+				<div class="hero-demo">
+					<div class="demo-window">
+						<div class="window-header">
+							<div class="window-controls">
+								<span class="control red"></span>
+								<span class="control yellow"></span>
+								<span class="control green"></span>
+							</div>
+							<span class="window-title">TreeForge Demo</span>
+						</div>
+						<div class="window-content" id="hero-tree-container"></div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Features Section -->
+		<section id="features" class="features">
+			<div class="container">
+				<h2 class="section-title">Why TreeForge?</h2>
+				<p class="section-subtitle">Everything you need to build amazing file tree interfaces</p>
+
+				<div class="feature-grid">
+					<div class="feature-card">
+						<div class="feature-icon">🎨</div>
+						<h3>15 Beautiful Themes</h3>
+						<p>Choose from GitHub, VS Code, Dracula, Nord, and 11 more professionally designed themes.</p>
+						<a href="#themes" class="feature-link">Explore themes →</a>
+					</div>
+
+					<div class="feature-card">
+						<div class="feature-icon">⚙️</div>
+						<h3>15 Configuration Presets</h3>
+						<p>Ready-to-use configs for common use cases: file managers, code editors, documentation
+							browsers.
+						</p>
+						<a href="#presets" class="feature-link">View presets →</a>
+					</div>
+
+					<div class="feature-card">
+						<div class="feature-icon">🪝</div>
+						<h3>10 Lifecycle Hooks</h3>
+						<p>Complete control with hooks for file operations, drag & drop, and custom interactions.</p>
+						<a href="#hooks" class="feature-link">Learn more →</a>
+					</div>
+
+					<div class="feature-card">
+						<div class="feature-icon">✨</div>
+						<h3>Zero Dependencies</h3>
+						<p>Pure vanilla JavaScript. No jQuery, no React, no framework required. Just plug and play.</p>
+					</div>
+
+					<div class="feature-card">
+						<div class="feature-icon">⚡</div>
+						<h3>Lightning Fast</h3>
+						<p>Optimized for performance. Handles large trees with thousands of nodes effortlessly.</p>
+					</div>
+
+					<div class="feature-card">
+						<div class="feature-icon">📱</div>
+						<h3>Responsive Design</h3>
+						<p>Works perfectly on desktop, tablet, and mobile. Touch-friendly with gesture support.</p>
+					</div>
+
+					<div class="feature-card">
+						<div class="feature-icon">🔧</div>
+						<h3>Highly Configurable</h3>
+						<p>100+ configuration options. Customize every aspect to match your design needs.</p>
+					</div>
+
+					<div class="feature-card">
+						<div class="feature-icon">🌐</div>
+						<h3>API Integration</h3>
+						<p>Works with any backend. Support for local data, REST APIs, and real-time updates.</p>
+					</div>
+
+					<div class="feature-card">
+						<div class="feature-icon">♿</div>
+						<h3>Accessible</h3>
+						<p>WCAG compliant with keyboard navigation, ARIA labels, and screen reader support.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Getting Started Section -->
+		<section id="getting-started" class="getting-started">
+			<div class="container">
+				<h2 class="section-title">Get Started in Seconds</h2>
+				<p class="section-subtitle">Install via npm or use directly from CDN</p>
+
+				<div class="install-tabs">
+					<button class="tab-btn active" data-tab="npm">npm</button>
+					<button class="tab-btn" data-tab="yarn">yarn</button>
+					<button class="tab-btn" data-tab="cdn">CDN</button>
+				</div>
+
+				<div class="tab-content active" data-tab-content="npm">
+					<div class="code-block">
+						<div class="code-header">
+							<span class="code-label">Terminal</span>
+							<button class="copy-btn" data-copy="npm install treeforge">
+								<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+									 stroke-width="2">
+									<rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+									<path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+								</svg>
+								Copy
+							</button>
+						</div>
+						<pre><code class="language-bash">npm install treeforge</code></pre>
+					</div>
+				</div>
+
+				<div class="tab-content" data-tab-content="yarn">
+					<div class="code-block">
+						<div class="code-header">
+							<span class="code-label">Terminal</span>
+							<button class="copy-btn" data-copy="yarn add treeforge">
+								<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+									 stroke-width="2">
+									<rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+									<path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+								</svg>
+								Copy
+							</button>
+						</div>
+						<pre><code class="language-bash">yarn add treeforge</code></pre>
+					</div>
+				</div>
+
+				<div class="tab-content" data-tab-content="cdn">
+					<div class="code-block">
+						<div class="code-header">
+							<span class="code-label">HTML</span>
+							<button class="copy-btn"
+									data-copy='<script src="https://cdn.jsdelivr.net/npm/treeforge@1.0.0/index.js"></script>'>
+								<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+									 stroke-width="2">
+									<rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+									<path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+								</svg>
+								Copy
+							</button>
+						</div>
+						<pre><code class="language-html">&lt;script src="https://cdn.jsdelivr.net/npm/treeforge@1.0.0/index.js"&gt;&lt;/script&gt;</code></pre>
+					</div>
+				</div>
+
+				<!-- Quick Start Example -->
+				<div class="example-section">
+					<h3 class="example-title">Quick Start Example</h3>
+					<div class="code-block">
+						<div class="code-header">
+							<span class="code-label">JavaScript</span>
+							<button class="copy-btn" data-copy="quick-start-code">
+								<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+									 stroke-width="2">
+									<rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+									<path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+								</svg>
+								Copy
+							</button>
+						</div>
+						<pre id="quick-start-code"><code class="language-javascript">import TreeForge, { ConfigPresets } from 'treeforge';
+import 'treeforge/styles/ui.css';
+
+const tree = new TreeForge({
+    containerId: 'tree',
+    localData: {
+        name: 'my-project',
+        type: 'folder',
+        children: [
+            { name: 'src', type: 'folder', children: [] },
+            { name: 'README.md', type: 'file' }
+        ]
+    },
+    ...ConfigPresets.GITHUB_CLONE  // Use a preset!
+});</code></pre>
+					</div>
+					<div class="example-result">
+						<div class="result-label">Result:</div>
+						<div id="quick-start-demo" class="demo-container"></div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Quick Start Section -->
+		<section id="quick-start" class="quick-start">
+			<div class="container">
+				<h2 class="section-title">Quick Start Guide</h2>
+				<p class="section-subtitle">Get up and running in 5 minutes</p>
+
+				<div class="doc-content">
+					<h3>Step 1: Install TreeForge</h3>
+					<div class="code-block">
+						<pre><code class="language-bash">npm install treeforge</code></pre>
+					</div>
+
+					<h3>Step 2: Import and Initialize</h3>
+					<div class="code-block">
+						<pre><code class="language-javascript">import TreeForge, { ConfigPresets } from 'treeforge';
+import 'treeforge/styles/ui.css';
+
+// Create your tree data
+const myData = {
+    name: 'project',
+    type: 'folder',
+    children: [
+        { name: 'src', type: 'folder', children: [] },
+        { name: 'README.md', type: 'file' }
+    ]
+};
+
+// Initialize TreeForge
+const tree = new TreeForge({
+    containerId: 'tree',
+    localData: myData,
+    ...ConfigPresets.GITHUB_CLONE
+});</code></pre>
+					</div>
+
+					<h3>Step 3: Add HTML Container</h3>
+					<div class="code-block">
+						<pre><code class="language-html">&lt;div id="tree"&gt;&lt;/div&gt;</code></pre>
+					</div>
+
+					<p class="success-message">🎉 That's it! Your tree is now rendered and interactive.</p>
+
+					<h3>Next Steps</h3>
+					<ul class="feature-list">
+						<li>Explore <a href="#configuration">Configuration Options</a></li>
+						<li>Learn about <a href="#data-structure">Data Structure</a></li>
+						<li>Check out <a href="#examples">Live Examples</a></li>
+						<li>Browse <a href="#themes">Available Themes</a></li>
+					</ul>
+				</div>
+			</div>
+		</section>
+
+		<!-- Configuration Section -->
+		<section id="configuration" class="configuration">
+			<div class="container">
+				<h2 class="section-title">Configuration</h2>
+				<p class="section-subtitle">Customize every aspect of TreeForge</p>
+
+				<div class="doc-content">
+					<h3>Basic Configuration</h3>
+					<div class="code-block">
+						<pre><code class="language-javascript">const tree = new TreeForge({
+    containerId: 'tree',        // Required: DOM element ID
+    localData: treeData,        // Local data source
+    apiUrl: '/api/tree',        // Or API endpoint
+    
+    settings: {
+        style: 'modern',         // Visual style
+        colors: {...},           // Color scheme
+        icons: {...}             // Custom icons
+    },
+    
+    features: {
+        contextMenu: true,       // Right-click menu
+        dragDrop: true,          // Drag and drop
+        search: true,            // Search functionality
+        keyboard: true,          // Keyboard shortcuts
+        editor: true             // File editor
+    }
+});</code></pre>
+					</div>
+
+					<h3>Settings Object</h3>
+					<p>Control the visual appearance and behavior:</p>
+					<ul class="feature-list">
+						<li><code>style</code> - Visual style preset (modern, minimal, colorful)</li>
+						<li><code>colors</code> - Custom color scheme</li>
+						<li><code>icons</code> - File and folder icons</li>
+						<li><code>indent</code> - Indentation size</li>
+						<li><code>lineHeight</code> - Line height for nodes</li>
+						<li><code>fontSize</code> - Font size for text</li>
+					</ul>
+
+					<h3>Features Object</h3>
+					<p>Enable or disable specific features:</p>
+					<ul class="feature-list">
+						<li><code>contextMenu</code> - Right-click context menu</li>
+						<li><code>dragDrop</code> - Drag and drop nodes</li>
+						<li><code>search</code> - Search bar and functionality</li>
+						<li><code>keyboard</code> - Keyboard navigation</li>
+						<li><code>editor</code> - Built-in file editor</li>
+						<li><code>toolbar</code> - Action toolbar</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+
+		<!-- Data Structure Section -->
+		<section id="data-structure" class="data-structure">
+			<div class="container">
+				<h2 class="section-title">Data Structure</h2>
+				<p class="section-subtitle">Understanding TreeForge data format</p>
+
+				<div class="doc-content">
+					<h3>Tree Node Format</h3>
+					<div class="code-block">
+						<pre><code class="language-javascript">{
+    name: 'filename.js',      // Required: Node name
+    type: 'file',             // Required: 'file' or 'folder'
+    children: [],             // Optional: Child nodes (for folders)
+    path: '/src/app.js',      // Optional: Full path
+    content: 'code...',       // Optional: File content
+    metadata: {               // Optional: Custom metadata
+        size: 1024,
+        modified: '2025-10-06',
+        permissions: 'rw-r--r--'
+    }
+}</code></pre>
+					</div>
+
+					<h3>Complete Example</h3>
+					<div class="code-block">
+						<pre><code class="language-javascript">const projectData = {
+    name: 'my-project',
+    type: 'folder',
+    children: [
+        {
+            name: 'src',
+            type: 'folder',
+            children: [
+                {
+                    name: 'index.js',
+                    type: 'file',
+                    content: 'console.log("Hello");'
+                },
+                {
+                    name: 'components',
+                    type: 'folder',
+                    children: [
+                        { name: 'Header.js', type: 'file' },
+                        { name: 'Footer.js', type: 'file' }
+                    ]
+                }
+            ]
+        },
+        {
+            name: 'package.json',
+            type: 'file',
+            content: '{ "name": "my-project" }'
+        }
+    ]
+};</code></pre>
+					</div>
+
+					<h3>API Response Format</h3>
+					<p>When using an API endpoint, return data in the same format:</p>
+					<div class="code-block">
+						<pre><code class="language-javascript">// GET /api/tree
+{
+    "success": true,
+    "data": {
+        "name": "root",
+        "type": "folder",
+        "children": [...]
+    }
+}</code></pre>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Examples Section -->
+		<section id="examples" class="examples">
+			<div class="container">
+				<h2 class="section-title">Live Examples</h2>
+				<p class="section-subtitle">See TreeForge in action with different styles and configurations</p>
+
+				<div class="example-tabs">
+					<button class="example-tab active" data-example="github">GitHub Style</button>
+					<button class="example-tab" data-example="vscode">VS Code Dark</button>
+					<button class="example-tab" data-example="dracula">Dracula Theme</button>
+					<button class="example-tab" data-example="minimal">Minimal</button>
+				</div>
+
+				<div class="example-content active" data-example-content="github">
+					<div class="example-layout">
+						<div class="example-code">
+							<div class="code-block">
+								<div class="code-header">
+									<span class="code-label">github-example.js</span>
+								</div>
+								<pre><code class="language-javascript">import TreeForge, { TreeStyles } from 'treeforge';
+
+const tree = new TreeForge({
+    containerId: 'tree',
+    localData: projectData,
+    settings: TreeStyles.GITHUB,
+    features: {
+        contextMenu: true,
+        dragDrop: true,
+        search: true
+    }
+});</code></pre>
+							</div>
+						</div>
+						<div class="example-preview">
+							<div id="example-github" class="demo-container"></div>
+						</div>
+					</div>
+				</div>
+
+				<div class="example-content" data-example-content="vscode">
+					<div class="example-layout">
+						<div class="example-code">
+							<div class="code-block">
+								<div class="code-header">
+									<span class="code-label">vscode-example.js</span>
+								</div>
+								<pre><code class="language-javascript">import TreeForge, { TreeStyles } from 'treeforge';
+
+const tree = new TreeForge({
+    containerId: 'tree',
+    localData: projectData,
+    settings: TreeStyles.VSCODE_DARK,
+    features: {
+        editor: true,
+        keyboard: true,
+        autoSave: true
+    }
+});</code></pre>
+							</div>
+						</div>
+						<div class="example-preview">
+							<div id="example-vscode" class="demo-container"></div>
+						</div>
+					</div>
+				</div>
+
+				<div class="example-content" data-example-content="dracula">
+					<div class="example-layout">
+						<div class="example-code">
+							<div class="code-block">
+								<div class="code-header">
+									<span class="code-label">dracula-example.js</span>
+								</div>
+								<pre><code class="language-javascript">import TreeForge, { TreeStyles } from 'treeforge';
+
+const tree = new TreeForge({
+    containerId: 'tree',
+    localData: projectData,
+    settings: TreeStyles.DRACULA,
+    features: {
+        contextMenu: true,
+        dragDrop: true
+    }
+});</code></pre>
+							</div>
+						</div>
+						<div class="example-preview">
+							<div id="example-dracula" class="demo-container"></div>
+						</div>
+					</div>
+				</div>
+
+				<div class="example-content" data-example-content="minimal">
+					<div class="example-layout">
+						<div class="example-code">
+							<div class="code-block">
+								<div class="code-header">
+									<span class="code-label">minimal-example.js</span>
+								</div>
+								<pre><code class="language-javascript">import TreeForge, { TreeStyles } from 'treeforge';
+
+const tree = new TreeForge({
+    containerId: 'tree',
+    localData: projectData,
+    settings: TreeStyles.MINIMAL
+});</code></pre>
+							</div>
+						</div>
+						<div class="example-preview">
+							<div id="example-minimal" class="demo-container"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Themes Section -->
+		<section id="themes" class="themes">
+			<div class="container">
+				<h2 class="section-title">15 Beautiful Themes</h2>
+				<p class="section-subtitle">Choose the perfect style for your project</p>
+
+				<div class="themes-grid">
+					<div class="theme-card">
+						<div class="theme-preview">🎨</div>
+						<h4>GitHub</h4>
+						<p>Classic GitHub file browser style</p>
+						<code>TreeStyles.GITHUB</code>
+					</div>
+					<div class="theme-card">
+						<div class="theme-preview">🌙</div>
+						<h4>VS Code Dark</h4>
+						<p>VS Code's dark theme</p>
+						<code>TreeStyles.VSCODE_DARK</code>
+					</div>
+					<div class="theme-card">
+						<div class="theme-preview">☀️</div>
+						<h4>VS Code Light</h4>
+						<p>VS Code's light theme</p>
+						<code>TreeStyles.VSCODE_LIGHT</code>
+					</div>
+					<div class="theme-card">
+						<div class="theme-preview">🧛</div>
+						<h4>Dracula</h4>
+						<p>Popular Dracula theme</p>
+						<code>TreeStyles.DRACULA</code>
+					</div>
+					<div class="theme-card">
+						<div class="theme-preview">❄️</div>
+						<h4>Nord</h4>
+						<p>Arctic, north-bluish theme</p>
+						<code>TreeStyles.NORD</code>
+					</div>
+					<div class="theme-card">
+						<div class="theme-preview">🌈</div>
+						<h4>Colorful</h4>
+						<p>Vibrant, colorful design</p>
+						<code>TreeStyles.COLORFUL</code>
+					</div>
+					<div class="theme-card">
+						<div class="theme-preview">🎯</div>
+						<h4>Material Dark</h4>
+						<p>Material Design dark</p>
+						<code>TreeStyles.MATERIAL_DARK</code>
+					</div>
+					<div class="theme-card">
+						<div class="theme-preview">💫</div>
+						<h4>Material Light</h4>
+						<p>Material Design light</p>
+						<code>TreeStyles.MATERIAL_LIGHT</code>
+					</div>
+					<div class="theme-card">
+						<div class="theme-preview">📝</div>
+						<h4>ASCII</h4>
+						<p>Classic ASCII art style</p>
+						<code>TreeStyles.ASCII</code>
+					</div>
+					<div class="theme-card">
+						<div class="theme-preview">⚡</div>
+						<h4>Minimal</h4>
+						<p>Clean, minimal design</p>
+						<code>TreeStyles.MINIMAL</code>
+					</div>
+					<div class="theme-card">
+						<div class="theme-preview">🌟</div>
+						<h4>One Dark</h4>
+						<p>Atom One Dark theme</p>
+						<code>TreeStyles.ONE_DARK</code>
+					</div>
+					<div class="theme-card">
+						<div class="theme-preview">☀️</div>
+						<h4>Solarized Dark</h4>
+						<p>Solarized color scheme</p>
+						<code>TreeStyles.SOLARIZED_DARK</code>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- API Constructor Section -->
+		<section id="api-constructor" class="api-constructor">
+			<div class="container">
+				<h2 class="section-title">Constructor</h2>
+				<p class="section-subtitle">Creating a TreeForge instance</p>
+
+				<div class="doc-content">
+					<h3>Syntax</h3>
+					<div class="code-block">
+						<pre><code class="language-javascript">new TreeForge(config)</code></pre>
+					</div>
+
+					<h3>Parameters</h3>
+					<table class="api-table">
+						<thead>
+							<tr>
+								<th>Parameter</th>
+								<th>Type</th>
+								<th>Required</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><code>containerId</code></td>
+								<td>string</td>
+								<td>✅ Yes</td>
+								<td>ID of the DOM element to render the tree</td>
+							</tr>
+							<tr>
+								<td><code>localData</code></td>
+								<td>object</td>
+								<td>❌ No*</td>
+								<td>Local tree data (required if no apiUrl)</td>
+							</tr>
+							<tr>
+								<td><code>apiUrl</code></td>
+								<td>string</td>
+								<td>❌ No*</td>
+								<td>API endpoint for tree data (required if no localData)</td>
+							</tr>
+							<tr>
+								<td><code>settings</code></td>
+								<td>object</td>
+								<td>❌ No</td>
+								<td>Visual settings and styling</td>
+							</tr>
+							<tr>
+								<td><code>features</code></td>
+								<td>object</td>
+								<td>❌ No</td>
+								<td>Feature flags (contextMenu, dragDrop, etc.)</td>
+							</tr>
+							<tr>
+								<td><code>hooks</code></td>
+								<td>object</td>
+								<td>❌ No</td>
+								<td>Lifecycle hooks and callbacks</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<h3>Example</h3>
+					<div class="code-block">
+						<pre><code class="language-javascript">const tree = new TreeForge({
+    containerId: 'my-tree',
+    localData: treeData,
+    settings: TreeStyles.GITHUB,
+    features: {
+        contextMenu: true,
+        dragDrop: true
+    },
+    hooks: {
+        onCreateFile: (path) => console.log('Created:', path)
+    }
+});</code></pre>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- API Methods Section -->
+		<section id="api-methods" class="api-methods">
+			<div class="container">
+				<h2 class="section-title">Methods</h2>
+				<p class="section-subtitle">Control your tree programmatically</p>
+
+				<div class="doc-content">
+					<div class="method-group">
+						<h3>render()</h3>
+						<p>Renders or re-renders the tree.</p>
+						<div class="code-block">
+							<pre><code class="language-javascript">tree.render();</code></pre>
+						</div>
+					</div>
+
+					<div class="method-group">
+						<h3>refresh()</h3>
+						<p>Refreshes the tree data (useful for API mode).</p>
+						<div class="code-block">
+							<pre><code class="language-javascript">await tree.refresh();</code></pre>
+						</div>
+					</div>
+
+					<div class="method-group">
+						<h3>destroy()</h3>
+						<p>Destroys the tree instance and cleans up.</p>
+						<div class="code-block">
+							<pre><code class="language-javascript">tree.destroy();</code></pre>
+						</div>
+					</div>
+
+					<div class="method-group">
+						<h3>createNode(path, data)</h3>
+						<p>Creates a new node at the specified path.</p>
+						<div class="code-block">
+							<pre><code class="language-javascript">tree.createNode('/src', {
+    name: 'app.js',
+    type: 'file',
+    content: 'console.log("Hello");'
+});</code></pre>
+						</div>
+					</div>
+
+					<div class="method-group">
+						<h3>deleteNode(path)</h3>
+						<p>Deletes a node at the specified path.</p>
+						<div class="code-block">
+							<pre><code class="language-javascript">tree.deleteNode('/src/app.js');</code></pre>
+						</div>
+					</div>
+
+					<div class="method-group">
+						<h3>renameNode(path, newName)</h3>
+						<p>Renames a node at the specified path.</p>
+						<div class="code-block">
+							<pre><code class="language-javascript">tree.renameNode('/src/app.js', 'index.js');</code></pre>
+						</div>
+					</div>
+
+					<div class="method-group">
+						<h3>getNode(path)</h3>
+						<p>Gets node data at the specified path.</p>
+						<div class="code-block">
+							<pre><code class="language-javascript">const node = tree.getNode('/src/app.js');
+console.log(node.name, node.type);</code></pre>
+						</div>
+					</div>
+
+					<div class="method-group">
+						<h3>expandAll() / collapseAll()</h3>
+						<p>Expands or collapses all folders.</p>
+						<div class="code-block">
+							<pre><code class="language-javascript">tree.expandAll();
+tree.collapseAll();</code></pre>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- API Properties Section -->
+		<section id="api-properties" class="api-properties">
+			<div class="container">
+				<h2 class="section-title">Properties</h2>
+				<p class="section-subtitle">Access tree instance properties</p>
+
+				<div class="doc-content">
+					<table class="api-table">
+						<thead>
+							<tr>
+								<th>Property</th>
+								<th>Type</th>
+								<th>Read-only</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><code>tree.data</code></td>
+								<td>object</td>
+								<td>❌ No</td>
+								<td>The current tree data structure</td>
+							</tr>
+							<tr>
+								<td><code>tree.config</code></td>
+								<td>object</td>
+								<td>✅ Yes</td>
+								<td>The configuration object</td>
+							</tr>
+							<tr>
+								<td><code>tree.container</code></td>
+								<td>HTMLElement</td>
+								<td>✅ Yes</td>
+								<td>The DOM container element</td>
+							</tr>
+							<tr>
+								<td><code>tree.selected</code></td>
+								<td>object</td>
+								<td>❌ No</td>
+								<td>Currently selected node</td>
+							</tr>
+							<tr>
+								<td><code>tree.version</code></td>
+								<td>string</td>
+								<td>✅ Yes</td>
+								<td>TreeForge version number</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<h3>Example Usage</h3>
+					<div class="code-block">
+						<pre><code class="language-javascript">// Access tree data
+console.log(tree.data);
+
+// Get selected node
+if (tree.selected) {
+    console.log('Selected:', tree.selected.name);
+}
+
+// Check version
+console.log('TreeForge version:', tree.version);</code></pre>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- API Events Section -->
+		<section id="api-events" class="api-events">
+			<div class="container">
+				<h2 class="section-title">Events</h2>
+				<p class="section-subtitle">Listen to tree events</p>
+
+				<div class="doc-content">
+					<h3>Available Events</h3>
+					<table class="api-table">
+						<thead>
+							<tr>
+								<th>Event</th>
+								<th>Parameters</th>
+								<th>Description</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><code>node:select</code></td>
+								<td>node, event</td>
+								<td>Fired when a node is selected</td>
+							</tr>
+							<tr>
+								<td><code>node:expand</code></td>
+								<td>node</td>
+								<td>Fired when a folder is expanded</td>
+							</tr>
+							<tr>
+								<td><code>node:collapse</code></td>
+								<td>node</td>
+								<td>Fired when a folder is collapsed</td>
+							</tr>
+							<tr>
+								<td><code>node:create</code></td>
+								<td>path, data</td>
+								<td>Fired when a node is created</td>
+							</tr>
+							<tr>
+								<td><code>node:delete</code></td>
+								<td>path</td>
+								<td>Fired when a node is deleted</td>
+							</tr>
+							<tr>
+								<td><code>node:rename</code></td>
+								<td>path, oldName, newName</td>
+								<td>Fired when a node is renamed</td>
+							</tr>
+							<tr>
+								<td><code>tree:ready</code></td>
+								<td>-</td>
+								<td>Fired when tree is fully loaded</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<h3>Listening to Events</h3>
+					<div class="code-block">
+						<pre><code class="language-javascript">// Listen to node selection
+tree.on('node:select', (node, event) => {
+    console.log('Selected:', node.name);
+});
+
+// Listen to node creation
+tree.on('node:create', (path, data) => {
+    console.log('Created:', path);
+});
+
+// Listen to tree ready
+tree.on('tree:ready', () => {
+    console.log('Tree is ready!');
+});</code></pre>
+					</div>
+
+					<h3>Removing Event Listeners</h3>
+					<div class="code-block">
+						<pre><code class="language-javascript">// Remove specific listener
+const handler = (node) => console.log(node);
+tree.on('node:select', handler);
+tree.off('node:select', handler);
+
+// Remove all listeners for an event
+tree.off('node:select');</code></pre>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Lifecycle Hooks Section -->
+		<section id="hooks-lifecycle" class="hooks-lifecycle">
+			<div class="container">
+				<h2 class="section-title">Lifecycle Hooks</h2>
+				<p class="section-subtitle">Hook into TreeForge lifecycle</p>
+
+				<div class="doc-content">
+					<h3>Available Lifecycle Hooks</h3>
+
+					<div class="hook-group">
+						<h4>onLoad</h4>
+						<p>Called when the tree is initially loaded.</p>
+						<div class="code-block">
+							<pre><code class="language-javascript">hooks: {
+    onLoad: (data) => {
+        console.log('Tree loaded with data:', data);
+    }
+}</code></pre>
+						</div>
+					</div>
+
+					<div class="hook-group">
+						<h4>onRender</h4>
+						<p>Called after the tree is rendered.</p>
+						<div class="code-block">
+							<pre><code class="language-javascript">hooks: {
+    onRender: () => {
+        console.log('Tree rendered successfully');
+    }
+}</code></pre>
+						</div>
+					</div>
+
+					<div class="hook-group">
+						<h4>onDestroy</h4>
+						<p>Called when the tree instance is destroyed.</p>
+						<div class="code-block">
+							<pre><code class="language-javascript">hooks: {
+    onDestroy: () => {
+        console.log('Cleaning up resources...');
+    }
+}</code></pre>
+						</div>
+					</div>
+
+					<h3>Complete Example</h3>
+					<div class="code-block">
+						<pre><code class="language-javascript">const tree = new TreeForge({
+    containerId: 'tree',
+    localData: myData,
+    hooks: {
+        onLoad: (data) => {
+            console.log('Loaded nodes:', data.children.length);
+        },
+        onRender: () => {
+            console.log('Tree is visible');
+        },
+        onDestroy: () => {
+            console.log('Goodbye!');
+        }
+    }
+});</code></pre>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- File Operations Hooks Section -->
+		<section id="hooks-file" class="hooks-file">
+			<div class="container">
+				<h2 class="section-title">File Operations Hooks</h2>
+				<p class="section-subtitle">Handle file-related actions</p>
+
+				<div class="doc-content">
+					<div class="hook-group">
+						<h4>onCreateFile</h4>
+						<p>Called when a file is created.</p>
+						<div class="code-block">
+							<pre><code class="language-javascript">hooks: {
+    onCreateFile: (path) => {
+        console.log('File created:', path);
+        // Save to backend
+        fetch('/api/files', {
+            method: 'POST',
+            body: JSON.stringify({ path })
+        });
+    }
+}</code></pre>
+						</div>
+					</div>
+
+					<div class="hook-group">
+						<h4>onDeleteFile</h4>
+						<p>Called when a file is deleted.</p>
+						<div class="code-block">
+							<pre><code class="language-javascript">hooks: {
+    onDeleteFile: (path) => {
+        if (confirm(`Delete ${path}?`)) {
+            console.log('File deleted:', path);
+            return true; // Allow deletion
+        }
+        return false; // Cancel deletion
+    }
+}</code></pre>
+						</div>
+					</div>
+
+					<div class="hook-group">
+						<h4>onReadFile</h4>
+						<p>Called when a file is opened/read.</p>
+						<div class="code-block">
+							<pre><code class="language-javascript">hooks: {
+    onReadFile: async (path) => {
+        const response = await fetch(`/api/files${path}`);
+        const content = await response.text();
+        return content;
+    }
+}</code></pre>
+						</div>
+					</div>
+
+					<div class="hook-group">
+						<h4>onWriteFile</h4>
+						<p>Called when a file is saved.</p>
+						<div class="code-block">
+							<pre><code class="language-javascript">hooks: {
+    onWriteFile: async (path, content) => {
+        await fetch(`/api/files${path}`, {
+            method: 'PUT',
+            body: content
+        });
+        console.log('File saved:', path);
+    }
+}</code></pre>
+						</div>
+					</div>
+
+					<div class="hook-group">
+						<h4>onFileOpen</h4>
+						<p>Called when a file is clicked/opened.</p>
+						<div class="code-block">
+							<pre><code class="language-javascript">hooks: {
+    onFileOpen: (node) => {
+        console.log('Opening file:', node.name);
+        // Open in editor, download, etc.
+    }
+}</code></pre>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Folder Operations Hooks Section -->
+		<section id="hooks-folder" class="hooks-folder">
+			<div class="container">
+				<h2 class="section-title">Folder Operations Hooks</h2>
+				<p class="section-subtitle">Handle folder-related actions</p>
+
+				<div class="doc-content">
+					<div class="hook-group">
+						<h4>onCreateFolder</h4>
+						<p>Called when a folder is created.</p>
+						<div class="code-block">
+							<pre><code class="language-javascript">hooks: {
+    onCreateFolder: (path) => {
+        console.log('Folder created:', path);
+        fetch('/api/folders', {
+            method: 'POST',
+            body: JSON.stringify({ path })
+        });
+    }
+}</code></pre>
+						</div>
+					</div>
+
+					<div class="hook-group">
+						<h4>onDeleteFolder</h4>
+						<p>Called when a folder is deleted.</p>
+						<div class="code-block">
+							<pre><code class="language-javascript">hooks: {
+    onDeleteFolder: (path, node) => {
+        const fileCount = node.children?.length || 0;
+        if (fileCount > 0) {
+            return confirm(`Delete folder with ${fileCount} items?`);
+        }
+        return true;
+    }
+}</code></pre>
+						</div>
+					</div>
+
+					<div class="hook-group">
+						<h4>onRenameNode</h4>
+						<p>Called when a file or folder is renamed.</p>
+						<div class="code-block">
+							<pre><code class="language-javascript">hooks: {
+    onRenameNode: (oldPath, newPath) => {
+        console.log(`Renamed: ${oldPath} → ${newPath}`);
+        fetch('/api/rename', {
+            method: 'PATCH',
+            body: JSON.stringify({ oldPath, newPath })
+        });
+    }
+}</code></pre>
+						</div>
+					</div>
+
+					<div class="hook-group">
+						<h4>onDeleteNode</h4>
+						<p>Called when any node (file/folder) is deleted.</p>
+						<div class="code-block">
+							<pre><code class="language-javascript">hooks: {
+    onDeleteNode: (path, type) => {
+        console.log(`Deleting ${type}:`, path);
+        // Return false to cancel, true to proceed
+        return confirm(`Delete this ${type}?`);
+    }
+}</code></pre>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Custom Hooks Section -->
+		<section id="hooks-custom" class="hooks-custom">
+			<div class="container">
+				<h2 class="section-title">Custom Hooks</h2>
+				<p class="section-subtitle">Create your own hook patterns</p>
+
+				<div class="doc-content">
+					<h3>Combining Multiple Hooks</h3>
+					<div class="code-block">
+						<pre><code class="language-javascript">import { combineHooks } from 'treeforge';
+
+const analyticsHooks = {
+    onCreateFile: (path) => {
+        analytics.track('file_created', { path });
+    },
+    onDeleteFile: (path) => {
+        analytics.track('file_deleted', { path });
+    }
+};
+
+const apiHooks = {
+    onCreateFile: (path) => {
+        return fetch('/api/files', { 
+            method: 'POST',
+            body: JSON.stringify({ path }) 
+        });
+    }
+};
+
+const tree = new TreeForge({
+    containerId: 'tree',
+    localData: myData,
+    hooks: combineHooks(analyticsHooks, apiHooks)
+});</code></pre>
+					</div>
+
+					<h3>Hook Utilities</h3>
+					<div class="code-block">
+						<pre><code class="language-javascript">import { 
+    LocalStorageHooks,
+    RestApiHooks,
+    AnalyticsHooks,
+    ValidationHooks 
+} from 'treeforge';
+
+// Use built-in hook sets
+const tree = new TreeForge({
+    containerId: 'tree',
+    localData: myData,
+    hooks: {
+        ...LocalStorageHooks,
+        ...AnalyticsHooks
+    }
+});</code></pre>
+					</div>
+
+					<h3>Custom Hook Example</h3>
+					<div class="code-block">
+						<pre><code class="language-javascript">// Create reusable hook sets
+const MyCustomHooks = {
+    onCreateFile: (path) => {
+        // Custom logic
+        notifyUser(`Created: ${path}`);
+        logToServer('create', path);
+    },
+    onDeleteFile: (path) => {
+        // Custom validation
+        if (isProtected(path)) {
+            alert('This file is protected!');
+            return false; // Cancel deletion
+        }
+        return true; // Allow deletion
+    }
+};
+
+// Use in multiple trees
+const tree1 = new TreeForge({
+    containerId: 'tree1',
+    localData: data1,
+    hooks: MyCustomHooks
+});
+
+const tree2 = new TreeForge({
+    containerId: 'tree2',
+    localData: data2,
+    hooks: MyCustomHooks
+});</code></pre>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Presets Section -->
+		<section id="presets" class="presets">
+			<div class="container">
+				<h2 class="section-title">Configuration Presets</h2>
+				<p class="section-subtitle">Ready-to-use configurations for common use cases</p>
+
+				<div class="doc-content">
+					<h3>Using Presets</h3>
+					<div class="code-block">
+						<pre><code class="language-javascript">import TreeForge, { ConfigPresets } from 'treeforge';
+
+const tree = new TreeForge({
+    containerId: 'tree',
+    localData: myData,
+    ...ConfigPresets.GITHUB_CLONE  // Use a preset!
+});</code></pre>
+					</div>
+
+					<h3>Available Presets</h3>
+
+					<div class="preset-grid">
+						<div class="preset-card">
+							<h4>GITHUB_CLONE</h4>
+							<p>GitHub file browser style with all features</p>
+							<div class="code-block">
+								<pre><code class="language-javascript">...ConfigPresets.GITHUB_CLONE</code></pre>
+							</div>
+						</div>
+
+						<div class="preset-card">
+							<h4>VSCODE_CLONE</h4>
+							<p>VS Code explorer with editor integration</p>
+							<div class="code-block">
+								<pre><code class="language-javascript">...ConfigPresets.VSCODE_CLONE</code></pre>
+							</div>
+						</div>
+
+						<div class="preset-card">
+							<h4>FILE_MANAGER</h4>
+							<p>Full-featured file manager</p>
+							<div class="code-block">
+								<pre><code class="language-javascript">...ConfigPresets.FILE_MANAGER</code></pre>
+							</div>
+						</div>
+
+						<div class="preset-card">
+							<h4>DOCS_BROWSER</h4>
+							<p>Documentation browser (read-only)</p>
+							<div class="code-block">
+								<pre><code class="language-javascript">...ConfigPresets.DOCS_BROWSER</code></pre>
+							</div>
+						</div>
+
+						<div class="preset-card">
+							<h4>MINIMAL</h4>
+							<p>Minimal tree, no extra features</p>
+							<div class="code-block">
+								<pre><code class="language-javascript">...ConfigPresets.MINIMAL</code></pre>
+							</div>
+						</div>
+
+						<div class="preset-card">
+							<h4>MOBILE_OPTIMIZED</h4>
+							<p>Touch-friendly mobile interface</p>
+							<div class="code-block">
+								<pre><code class="language-javascript">...ConfigPresets.MOBILE_OPTIMIZED</code></pre>
+							</div>
+						</div>
+					</div>
+
+					<h3>Customizing Presets</h3>
+					<div class="code-block">
+						<pre><code class="language-javascript">// Start with a preset, override specific options
+const tree = new TreeForge({
+    containerId: 'tree',
+    localData: myData,
+    ...ConfigPresets.GITHUB_CLONE,
+    settings: {
+        ...ConfigPresets.GITHUB_CLONE.settings,
+        colors: {
+            background: '#1a1a1a',  // Custom background
+            text: '#ffffff'
+        }
+    }
+});</code></pre>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Custom Styling Section -->
+		<section id="styling" class="styling">
+			<div class="container">
+				<h2 class="section-title">Custom Styling</h2>
+				<p class="section-subtitle">Customize the look and feel</p>
+
+				<div class="doc-content">
+					<h3>Using CSS Variables</h3>
+					<div class="code-block">
+						<pre><code class="language-css">/* Override TreeForge CSS variables */
+#tree {
+    --tf-bg-primary: #1a1a1a;
+    --tf-bg-secondary: #2d2d2d;
+    --tf-text-color: #e0e0e0;
+    --tf-accent-color: #667eea;
+    --tf-border-color: #444;
+    --tf-hover-bg: rgba(255, 255, 255, 0.1);
+}</code></pre>
+					</div>
+
+					<h3>Custom CSS Classes</h3>
+					<div class="code-block">
+						<pre><code class="language-css">/* Target specific elements */
+.tf-node {
+    padding: 8px 12px;
+    border-radius: 6px;
+}
+
+.tf-node:hover {
+    background: #2d2d2d;
+}
+
+.tf-node[data-type="folder"] {
+    font-weight: 600;
+}
+
+.tf-node[data-type="file"][data-ext=".js"] {
+    color: #f7df1e; /* Yellow for JS files */
+}</code></pre>
+					</div>
+
+					<h3>JavaScript Styling</h3>
+					<div class="code-block">
+						<pre><code class="language-javascript">const tree = new TreeForge({
+    containerId: 'tree',
+    localData: myData,
+    settings: {
+        colors: {
+            background: '#1a1a1a',
+            text: '#e0e0e0',
+            accent: '#667eea',
+            hover: 'rgba(102, 126, 234, 0.1)'
+        },
+        icons: {
+            folder: '📁',
+            folderOpen: '📂',
+            file: '📄',
+            fileJs: '⚡',
+            fileCss: '🎨',
+            fileHtml: '🌐'
+        },
+        fontSize: '14px',
+        lineHeight: '1.6',
+        indent: 20
+    }
+});</code></pre>
+					</div>
+
+					<h3>Theme Example</h3>
+					<div class="code-block">
+						<pre><code class="language-javascript">// Create a custom theme
+const MyDarkTheme = {
+    style: 'custom',
+    colors: {
+        background: '#0d1117',
+        backgroundHover: '#161b22',
+        text: '#c9d1d9',
+        textSecondary: '#8b949e',
+        accent: '#58a6ff',
+        border: '#30363d'
+    },
+    icons: {
+        folder: '📁',
+        file: '📄'
+    },
+    fontSize: '14px',
+    indent: 16
+};
+
+const tree = new TreeForge({
+    containerId: 'tree',
+    localData: myData,
+    settings: MyDarkTheme
+});</code></pre>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Framework Integration Section -->
+		<section id="integration" class="integration">
+			<div class="container">
+				<h2 class="section-title">Framework Integration</h2>
+				<p class="section-subtitle">Use TreeForge with your favorite framework</p>
+
+				<div class="doc-content">
+					<h3>React Integration</h3>
+					<div class="code-block">
+						<pre><code class="language-javascript">import { useEffect, useRef } from 'react';
+import TreeForge, { ConfigPresets } from 'treeforge';
+import 'treeforge/styles/ui.css';
+
+function TreeComponent({ data }) {
+    const treeRef = useRef(null);
+    const containerRef = useRef(null);
+
+    useEffect(() => {
+        if (containerRef.current && !treeRef.current) {
+            treeRef.current = new TreeForge({
+                containerId: containerRef.current.id,
+                localData: data,
+                ...ConfigPresets.GITHUB_CLONE
+            });
+        }
+
+        return () => {
+            if (treeRef.current) {
+                treeRef.current.destroy();
+            }
+        };
+    }, []);
+
+    useEffect(() => {
+        if (treeRef.current) {
+            treeRef.current.data = data;
+            treeRef.current.render();
+        }
+    }, [data]);
+
+    return <div id="tree-container" ref={containerRef}></div>;
+}
+
+export default TreeComponent;</code></pre>
+					</div>
+
+					<h3>Vue Integration</h3>
+					<div class="code-block">
+						<pre><code class="language-javascript">import { onMounted, onUnmounted, ref, watch } from 'vue';
+import TreeForge, { ConfigPresets } from 'treeforge';
+import 'treeforge/styles/ui.css';
+
+export default {
+    props: ['data'],
+    setup(props) {
+        const treeInstance = ref(null);
+
+        onMounted(() => {
+            treeInstance.value = new TreeForge({
+                containerId: 'tree-container',
+                localData: props.data,
+                ...ConfigPresets.GITHUB_CLONE
+            });
+        });
+
+        watch(() => props.data, (newData) => {
+            if (treeInstance.value) {
+                treeInstance.value.data = newData;
+                treeInstance.value.render();
+            }
+        });
+
+        onUnmounted(() => {
+            if (treeInstance.value) {
+                treeInstance.value.destroy();
+            }
+        });
+
+        return {};
+    },
+    template: `<div id="tree-container"></div>`
+};</code></pre>
+					</div>
+
+					<h3>Angular Integration</h3>
+					<div class="code-block">
+						<pre><code class="language-typescript">import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import TreeForge, { ConfigPresets } from 'treeforge';
+import 'treeforge/styles/ui.css';
+
+@Component({
+    selector: 'app-tree',
+    template: `<div id="tree-container"></div>`
+})
+export class TreeComponent implements OnInit, OnDestroy {
+    @Input() data: any;
+    private tree: any;
+
+    ngOnInit() {
+        this.tree = new TreeForge({
+            containerId: 'tree-container',
+            localData: this.data,
+            ...ConfigPresets.GITHUB_CLONE
+        });
+    }
+
+    ngOnChanges() {
+        if (this.tree) {
+            this.tree.data = this.data;
+            this.tree.render();
+        }
+    }
+
+    ngOnDestroy() {
+        if (this.tree) {
+            this.tree.destroy();
+        }
+    }
+}</code></pre>
+					</div>
+
+					<h3>Svelte Integration</h3>
+					<div class="code-block">
+						<pre><code class="language-javascript">&lt;script&gt;
+import { onMount, onDestroy } from 'svelte';
+import TreeForge, { ConfigPresets } from 'treeforge';
+import 'treeforge/styles/ui.css';
+
+export let data;
+let tree;
+
+onMount(() => {
+    tree = new TreeForge({
+        containerId: 'tree-container',
+        localData: data,
+        ...ConfigPresets.GITHUB_CLONE
+    });
+});
+
+$: if (tree && data) {
+    tree.data = data;
+    tree.render();
+}
+
+onDestroy(() => {
+    if (tree) tree.destroy();
+});
+&lt;/script&gt;
+
+&lt;div id="tree-container"&gt;&lt;/div&gt;</code></pre>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Performance Section -->
+		<section id="performance" class="performance">
+			<div class="container">
+				<h2 class="section-title">Performance</h2>
+				<p class="section-subtitle">Optimize TreeForge for large datasets</p>
+
+				<div class="doc-content">
+					<h3>Virtual Scrolling</h3>
+					<p>For trees with thousands of nodes, enable virtual scrolling:</p>
+					<div class="code-block">
+						<pre><code class="language-javascript">const tree = new TreeForge({
+    containerId: 'tree',
+    localData: largeData,
+    features: {
+        virtualScroll: true,     // Enable virtual scrolling
+        virtualScrollHeight: 400, // Visible height
+        virtualScrollBuffer: 10   // Buffer rows
+    }
+});</code></pre>
+					</div>
+
+					<h3>Lazy Loading</h3>
+					<p>Load child nodes on demand:</p>
+					<div class="code-block">
+						<pre><code class="language-javascript">const tree = new TreeForge({
+    containerId: 'tree',
+    localData: initialData,
+    features: {
+        lazyLoad: true
+    },
+    hooks: {
+        onExpand: async (node) => {
+            if (!node.children) {
+                // Load children from API
+                const response = await fetch(`/api/tree/${node.path}`);
+                node.children = await response.json();
+            }
+        }
+    }
+});</code></pre>
+					</div>
+
+					<h3>Debouncing</h3>
+					<p>Debounce frequent operations:</p>
+					<div class="code-block">
+						<pre><code class="language-javascript">import { debounce } from 'treeforge';
+
+const tree = new TreeForge({
+    containerId: 'tree',
+    localData: myData,
+    hooks: {
+        onSearch: debounce((query) => {
+            // Search logic (debounced)
+            performSearch(query);
+        }, 300)
+    }
+});</code></pre>
+					</div>
+
+					<h3>Performance Tips</h3>
+					<ul class="feature-list">
+						<li>✅ Use virtual scrolling for 1000+ nodes</li>
+						<li>✅ Enable lazy loading for deep trees</li>
+						<li>✅ Debounce search and filter operations</li>
+						<li>✅ Minimize re-renders by batching updates</li>
+						<li>✅ Use <code>tree.refresh()</code> instead of recreating</li>
+						<li>✅ Disable unnecessary features</li>
+					</ul>
+
+					<h3>Benchmarks</h3>
+					<table class="api-table">
+						<thead>
+							<tr>
+								<th>Nodes</th>
+								<th>Initial Render</th>
+								<th>Re-render</th>
+								<th>Memory</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>100</td>
+								<td>~5ms</td>
+								<td>~2ms</td>
+								<td>~500KB</td>
+							</tr>
+							<tr>
+								<td>1,000</td>
+								<td>~40ms</td>
+								<td>~15ms</td>
+								<td>~2MB</td>
+							</tr>
+							<tr>
+								<td>10,000</td>
+								<td>~200ms*</td>
+								<td>~80ms*</td>
+								<td>~15MB</td>
+							</tr>
+						</tbody>
+					</table>
+					<p><small>* With virtual scrolling enabled</small></p>
+				</div>
+			</div>
+		</section>
+
+		<!-- Changelog Section -->
+		<section id="changelog" class="changelog">
+			<div class="container">
+				<h2 class="section-title">Changelog</h2>
+				<p class="section-subtitle">What's new in TreeForge</p>
+
+				<div class="doc-content">
+					<div class="changelog-entry">
+						<h3>v1.0.0 <span class="date">October 6, 2025</span></h3>
+						<ul class="feature-list">
+							<li>🎉 Initial release</li>
+							<li>✨ 15 built-in themes</li>
+							<li>⚙️ 15 configuration presets</li>
+							<li>🪝 10 lifecycle hooks</li>
+							<li>🎨 Complete CSS customization</li>
+							<li>📱 Mobile responsive</li>
+							<li>⚡ Virtual scrolling support</li>
+							<li>🔍 Search and filter</li>
+							<li>✏️ Inline editing</li>
+							<li>🖱️ Drag and drop</li>
+							<li>📝 Context menus</li>
+							<li>⌨️ Keyboard navigation</li>
+						</ul>
+					</div>
+
+					<div class="changelog-entry">
+						<h3>v0.9.0-beta <span class="date">September 2025</span></h3>
+						<ul class="feature-list">
+							<li>Beta release for testing</li>
+							<li>Core features implemented</li>
+							<li>API stabilized</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Migration Guide Section -->
+		<section id="migration" class="migration">
+			<div class="container">
+				<h2 class="section-title">Migration Guide</h2>
+				<p class="section-subtitle">Upgrading from other libraries</p>
+
+				<div class="doc-content">
+					<h3>From jstree</h3>
+					<div class="code-block">
+						<pre><code class="language-javascript">// jstree (OLD)
+$('#tree').jstree({
+    'core': {
+        'data': myData
+    }
+});
+
+// TreeForge (NEW)
+import TreeForge from 'treeforge';
+const tree = new TreeForge({
+    containerId: 'tree',
+    localData: myData
+});</code></pre>
+					</div>
+
+					<h3>From Fancytree</h3>
+					<div class="code-block">
+						<pre><code class="language-javascript">// Fancytree (OLD)
+$('#tree').fancytree({
+    source: myData
+});
+
+// TreeForge (NEW)
+const tree = new TreeForge({
+    containerId: 'tree',
+    localData: myData,
+    ...ConfigPresets.FILE_MANAGER
+});</code></pre>
+					</div>
+
+					<h3>Key Differences</h3>
+					<ul class="feature-list">
+						<li>✅ No jQuery dependency</li>
+						<li>✅ Modern ES6+ syntax</li>
+						<li>✅ TypeScript support</li>
+						<li>✅ Better performance</li>
+						<li>✅ Mobile-first design</li>
+						<li>✅ Built-in themes and presets</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+
+		<!-- Contributing Section -->
+		<section id="contributing" class="contributing">
+			<div class="container">
+				<h2 class="section-title">Contributing</h2>
+				<p class="section-subtitle">Help improve TreeForge</p>
+
+				<div class="doc-content">
+					<h3>How to Contribute</h3>
+					<ol class="feature-list">
+						<li>Fork the repository on GitHub</li>
+						<li>Clone your fork locally</li>
+						<li>Create a feature branch</li>
+						<li>Make your changes</li>
+						<li>Write tests for new features</li>
+						<li>Commit with clear messages</li>
+						<li>Push to your fork</li>
+						<li>Open a pull request</li>
+					</ol>
+
+					<h3>Development Setup</h3>
+					<div class="code-block">
+						<pre><code class="language-bash"># Clone the repository
+git clone https://github.com/abmercy035/treeforge.git
+cd treeforge
+
+# Install dependencies
+npm install
+
+# Run development server
+npm run dev
+
+# Run tests
+npm test
+
+# Build for production
+npm run build</code></pre>
+					</div>
+
+					<h3>Code Guidelines</h3>
+					<ul class="feature-list">
+						<li>Follow the existing code style</li>
+						<li>Write clear comments</li>
+						<li>Add JSDoc for public APIs</li>
+						<li>Keep functions small and focused</li>
+						<li>Write unit tests for new features</li>
+						<li>Update documentation</li>
+					</ul>
+
+					<h3>Reporting Issues</h3>
+					<p>Found a bug? Have a feature request?</p>
+					<a href="https://github.com/abmercy035/treeforge/issues" class="btn btn-primary">Open an Issue on
+						GitHub</a>
+				</div>
+			</div>
+		</section>
+
+		<!-- Support Section -->
+		<section id="support" class="support">
+			<div class="container">
+				<h2 class="section-title">Support</h2>
+				<p class="section-subtitle">Get help with TreeForge</p>
+
+				<div class="doc-content">
+					<div class="support-grid">
+						<div class="support-card">
+							<h3>📚 Documentation</h3>
+							<p>Read the complete documentation you're viewing now.</p>
+							<a href="#home">Browse Docs</a>
+						</div>
+
+						<div class="support-card">
+							<h3>💬 GitHub Discussions</h3>
+							<p>Ask questions and discuss with the community.</p>
+							<a href="https://github.com/abmercy035/treeforge/discussions" target="_blank">Join
+								Discussion</a>
+						</div>
+
+						<div class="support-card">
+							<h3>🐛 Bug Reports</h3>
+							<p>Report bugs and track issues on GitHub.</p>
+							<a href="https://github.com/abmercy035/treeforge/issues" target="_blank">Report Bug</a>
+						</div>
+
+						<div class="support-card">
+							<h3>✨ Feature Requests</h3>
+							<p>Suggest new features and improvements.</p>
+							<a href="https://github.com/abmercy035/treeforge/issues/new" target="_blank">Request
+								Feature</a>
+						</div>
+
+						<div class="support-card">
+							<h3>📧 Email Support</h3>
+							<p>Contact the maintainer directly.</p>
+							<a href="mailto:support@treeforge.dev">Send Email</a>
+						</div>
+
+						<div class="support-card">
+							<h3>⭐ Star on GitHub</h3>
+							<p>Show your support by starring the project.</p>
+							<a href="https://github.com/abmercy035/treeforge" target="_blank">Star Now</a>
+						</div>
+					</div>
+
+					<h3>Common Questions</h3>
+					<div class="faq">
+						<details>
+							<summary>Can I use TreeForge in commercial projects?</summary>
+							<p>Yes! TreeForge is MIT licensed and free to use in any project.</p>
+						</details>
+
+						<details>
+							<summary>Does TreeForge support TypeScript?</summary>
+							<p>Yes, TreeForge includes TypeScript definitions.</p>
+						</details>
+
+						<details>
+							<summary>Can I customize the styling?</summary>
+							<p>Absolutely! Use CSS variables, custom classes, or the settings object.</p>
+						</details>
+
+						<details>
+							<summary>Is TreeForge mobile-friendly?</summary>
+							<p>Yes, TreeForge is fully responsive and touch-optimized.</p>
+						</details>
+
+						<details>
+							<summary>Does TreeForge require jQuery?</summary>
+							<p>No, TreeForge is pure vanilla JavaScript with zero dependencies.</p>
+						</details>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- CTA Section -->
+		<section class="cta">
+			<div class="container">
+				<div class="cta-content">
+					<h2>Ready to Build Amazing File Trees?</h2>
+					<p>Get started with TreeForge today and create beautiful, interactive file tree interfaces.</p>
+					<div class="cta-actions">
+						<a href="https://github.com/abmercy035/treeforge" target="_blank"
+						   class="btn btn-primary btn-large">
+							<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+								<path
+									  d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+							</svg>
+							Star on GitHub
+						</a>
+						<a href="https://www.npmjs.com/package/treeforge" target="_blank"
+						   class="btn btn-secondary btn-large">
+							View on npm
+						</a>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Footer -->
+		<footer class="footer">
+			<div class="container">
+				<div class="footer-content">
+					<div class="footer-brand">
+						<span class="brand-icon">🌲</span>
+						<span class="brand-name">TreeForge</span>
+					</div>
+					<div class="footer-links">
+						<a href="https://github.com/abmercy035/treeforge">GitHub</a>
+						<a href="https://www.npmjs.com/package/treeforge">npm</a>
+						<a href="https://github.com/abmercy035/treeforge/issues">Issues</a>
+						<a href="https://github.com/abmercy035">About</a>
+					</div>
+					<div class="footer-copyright">
+						<p>© 2025 TreeForge. MIT License.</p>
+						<p>Made with ❤️ by <a href="https://github.com/abmercy035">abmercy035</a></p>
+					</div>
+				</div>
+			</div>
+		</footer>
+
+	</div>
+	<!-- End Main Content Wrapper -->
+
+	<!-- Scripts -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+	<script src="./scripts/docs-app.js"></script>
+</body>
+
+</html>
