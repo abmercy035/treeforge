@@ -3,13 +3,13 @@
    ========================================== */
 
 /* Container Styles */
-.container {
+/* .container {
 	display: flex;
 	gap: 20px;
 	height: 90vh;
 	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 	align-items: stretch;
-}
+} */
 
 #tree {
 	max-width: 400px;
