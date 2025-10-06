@@ -19,7 +19,7 @@ Add the TreeForge UI stylesheet to your HTML:
 
 ```html
 <!-- Option 1: Direct link (CDN) -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/treeforge@1.0.0/styles/ui.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/treeforge@1.0.2/styles/ui.css">
 
 <!-- Option 2: From node_modules -->
 <link rel="stylesheet" href="node_modules/treeforge/styles/ui.css">
